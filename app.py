@@ -11,7 +11,9 @@ pool_object = pooling.MySQLConnectionPool(
             pool_reset_session=True,
             host='localhost',
             user='root',
+            password='password',
             database='website',
+            auth_plugin="mysql_native_password"
         )
 
 # Pages
