@@ -110,12 +110,10 @@ def get_trip():
 @app.route('/api/attraction/', defaults={'attractionid':'1'})
 @app.route('/api/attraction/<path:attractionid>')
 def id_get_trip(attractionid):
-    print('yayaya')
     error_dict = {
     "error": True,
     "message": None
     }
-    print(type(attractionid))
     cnt_pool_obj = pool_object.get_connection()
     cursor = cnt_pool_obj.cursor(dictionary=True,buffered=True)
     sql = 'SELECT * FROM `taipei_trip` WHERE `id` = %s ;'
