@@ -39,6 +39,7 @@ async function load_trip(pg, kw) {
     }
     let res = await fetch(`/api/attractions?page=${pg}&keyword=${kw}`);
     let res_json = await res.json();
+    console.log(res_json);
     load_image = [];
     load_name = [];
     load_mrt = [];
@@ -58,7 +59,6 @@ async function load_trip(pg, kw) {
         }
         generate_pic(item_num);
         page = res_json.nextPage;
-        console.log(page);
     }
 }
 
