@@ -35,8 +35,10 @@ function generate_pic(number) {
 let page = 0;
 let keyword = "";
 async function load_trip(pg, kw) {
-    console.log("get into load function");
+    console.log("load_trip");
+    console.log(pg);
     if (pg === null) {
+        delay = false;
         return;
     }
     let res = await fetch(`/api/attractions?page=${pg}&keyword=${kw}`);
@@ -77,8 +79,8 @@ window.addEventListener("scroll", (e) => {
     ) {
         if (!delay) {
             console.log(document.documentElement.scrollHeight);
-            load_trip(page, keyword);
             delay = true;
+            load_trip(page, keyword);
         }
     }
 });
@@ -95,8 +97,8 @@ button.addEventListener("click", (e) => {
         all_div_p2.forEach((div_p2) => {
             div_p2.remove();
         });
-        load_trip(page, keyword);
         delay = true;
+        load_trip(page, keyword);
     }
 });
 
