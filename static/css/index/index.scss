@@ -1,0 +1,305 @@
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+    text-decoration: none;
+    list-style: none;
+    font-size: 20px;
+    font-family: "Noto Sans TC";
+}
+
+// nav
+div.nav1 {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #ffffff;
+    position: sticky;
+    top: 0;
+    div.nav2 {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        width: 1200px;
+        div.nav3 {
+            margin: 0.5rem 0;
+            font-size: 1.5rem;
+            font-weight: bolder;
+            color: #448899;
+            padding-left: 10px;
+        }
+        div.nav4 {
+            display: flex;
+            justify-content: flex-end;
+            align-items: center;
+            div.nav5 {
+                font-size: 0.8rem;
+                font-weight: 400px;
+                color: #666666;
+                margin-right: 0.5rem;
+            }
+        }
+    }
+}
+
+// search
+div.s0 {
+    background: linear-gradient(#aaddee, #66aabb);
+}
+div.s1 {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-image: url("/static/image/welcome\ 1.png"),
+        linear-gradient(#aaddee, #66aabb);
+    background-repeat: no-repeat;
+    background-position: 54vw 0%;
+    margin-bottom: 55px;
+    div.s2 {
+        width: 1200px;
+        height: 320px;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        div.s3 {
+            font-size: 1.4rem;
+            color: #f8f8f8;
+            font-weight: 700;
+            margin-bottom: 15px;
+            padding-left: 10px;
+        }
+        div.s4 {
+            font-size: 0.8rem;
+            color: #f8f8f8;
+            font-weight: 400;
+            margin-bottom: 25px;
+            padding-left: 10px;
+        }
+        div.s5 {
+            width: 100%;
+            display: flex;
+            align-items: center;
+            padding-left: 10px;
+            input {
+                width: 400px;
+                height: 46px;
+                font-size: 16px;
+                border-radius: 5px;
+                border: none;
+                padding: 15px;
+            }
+            button {
+                display: flex;
+                height: 100%;
+                width: 60px;
+                background-color: #448899;
+                border: none;
+                cursor: pointer;
+                justify-content: center;
+                align-items: center;
+            }
+        }
+    }
+}
+
+//picture
+div.p0 {
+    display: flex;
+    justify-content: center;
+    div.p1 {
+        width: 1200px;
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-around;
+        div.p2 {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            width: 270px;
+            border-radius: 5px;
+            border: #ddd9d9 1px solid;
+            margin-bottom: 30px;
+            img {
+                width: 99.9%;
+                height: 160px;
+                border-radius: 5px;
+            }
+            div.p3 {
+                width: 100%;
+                font-size: 0.8rem;
+                font-weight: 700;
+                color: #757575;
+                margin: 15px 0;
+                padding-left: 10px;
+            }
+            div.p4 {
+                display: flex;
+                justify-content: space-between;
+                color: #757575;
+                font-weight: 400;
+                width: 100%;
+                margin-bottom: 12px;
+                div.p5 {
+                    padding-left: 10px;
+                    font-size: 0.8rem;
+                }
+                div.p6 {
+                    font-size: 0.8rem;
+                    padding-right: 10px;
+                }
+            }
+        }
+    }
+}
+
+//last
+div.l1 {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #757575;
+    margin-top: 25px;
+    height: 104px;
+    div.l2 {
+        font-size: 0.8rem;
+        color: #ffffff;
+        font-weight: 700;
+        margin: 2.25rem 0;
+    }
+}
+
+// midea screen
+@media screen and (max-width: 600px) {
+    // nav
+    div.nav1 {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        background-color: #ffffff;
+        position: sticky;
+        top: 0;
+        div.nav2 {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            width: 100vw;
+            div.nav3 {
+                margin: 0.5rem 0;
+                font-size: 1.5rem;
+                font-weight: bolder;
+                color: #448899;
+                padding-left: 10px;
+            }
+            div.nav4 {
+                display: flex;
+                justify-content: flex-end;
+                align-items: center;
+                div.nav5 {
+                    font-size: 0.8rem;
+                    font-weight: 400px;
+                    color: #666666;
+                    margin-right: 0.5rem;
+                }
+            }
+        }
+    }
+
+    // search
+    div.s0 {
+        background: linear-gradient(#aaddee, #66aabb);
+        div.s1 {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background-image: url("/static/image/welcome\ 1.png"),
+                linear-gradient(#aaddee, #66aabb);
+            background-repeat: no-repeat;
+            background-size: 100%;
+            background-position: 30vw 120%;
+            margin-bottom: 55px;
+            div.s2 {
+                height: 280px;
+                div.s3 {
+                    padding-left: 1rem;
+                }
+                div.s4 {
+                    padding-left: 1rem;
+                }
+                div.s5 {
+                    padding-left: 1rem;
+                    width: 100vw;
+                    input {
+                        width: 64vw;
+                    }
+                }
+            }
+        }
+    }
+    //picture
+    div.p0 {
+        display: flex;
+        justify-content: center;
+        div.p1 {
+            width: 100vw;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-around;
+            div.p2 {
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+                align-items: center;
+                width: 90vw;
+                border-radius: 5px;
+                border: #ddd9d9 1px solid;
+                margin-bottom: 30px;
+                img {
+                    width: 90vw;
+                    height: 56vw;
+                    border-radius: 5px;
+                }
+                div.p3 {
+                    width: 100%;
+                    font-size: 0.8rem;
+                    font-weight: 700;
+                    color: #757575;
+                    margin: 15px 0;
+                    padding-left: 10px;
+                }
+                div.p4 {
+                    display: flex;
+                    justify-content: space-between;
+                    color: #757575;
+                    font-weight: 400;
+                    width: 100%;
+                    margin-bottom: 12px;
+                    div.p5 {
+                        padding-left: 10px;
+                        font-size: 0.8rem;
+                    }
+                    div.p6 {
+                        font-size: 0.8rem;
+                        padding-right: 10px;
+                    }
+                }
+            }
+        }
+    }
+
+    //last
+    div.l1 {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        background-color: #757575;
+        margin-top: 25px;
+        height: 104px;
+        div.l2 {
+            font-size: 0.8rem;
+            color: #ffffff;
+            font-weight: 700;
+            margin: 2.25rem 0;
+        }
+    }
+}
