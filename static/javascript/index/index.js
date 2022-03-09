@@ -32,7 +32,7 @@ function generate_pic(number) {
 let page = 0;
 let keyword = "";
 async function load_trip(pg, kw) {
-    console.log("load");
+    console.log("get into load function");
     if (pg === null) {
         return;
     }
@@ -57,6 +57,7 @@ async function load_trip(pg, kw) {
         }
         generate_pic(item_num);
         page = res_json.nextPage;
+        console.log(page);
     }
 }
 
