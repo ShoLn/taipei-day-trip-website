@@ -75,9 +75,11 @@ window.addEventListener("scroll", (e) => {
         window.scrollY + window.innerHeight >=
         document.documentElement.scrollHeight - 135
     ) {
-        if (!delay) console.log(document.documentElement.scrollHeight);
-        load_trip(page, keyword);
-        delay = true;
+        if (!delay) {
+            console.log(document.documentElement.scrollHeight);
+            load_trip(page, keyword);
+            delay = true;
+        }
     }
 });
 
