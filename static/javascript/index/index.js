@@ -96,6 +96,7 @@ button.addEventListener("click", (e) => {
             div_p2.remove();
         });
         load_trip(page, keyword);
+        delay = true;
     }
 });
 
