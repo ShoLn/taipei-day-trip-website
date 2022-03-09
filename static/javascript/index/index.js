@@ -32,6 +32,7 @@ function generate_pic(number) {
 let page = 0;
 let keyword = "";
 async function load_trip(pg, kw) {
+    console.log("load");
     if (pg === null) {
         return;
     }
@@ -64,7 +65,7 @@ window.addEventListener("load", (e) => {
     load_trip(page, keyword);
 });
 
-// fetch img when scroll to bottom
+// infinite scroll
 window.addEventListener("scroll", (e) => {
     if (
         window.scrollY + window.innerHeight >=
