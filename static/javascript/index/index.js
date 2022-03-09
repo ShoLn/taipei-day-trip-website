@@ -1,4 +1,5 @@
 let div_p1 = document.querySelector("div.p1");
+let delay = false; // sovle internet delay problem
 
 //create generate html pictre function
 function generate_pic(number) {
@@ -69,7 +70,6 @@ window.addEventListener("load", (e) => {
 });
 
 // infinite scroll
-let delay = false;
 window.addEventListener("scroll", (e) => {
     if (
         window.scrollY + window.innerHeight >=
@@ -88,13 +88,15 @@ let input = document.querySelector("input");
 let button = document.querySelector("button");
 
 button.addEventListener("click", (e) => {
-    let page = 0;
-    let keyword = input.value;
-    let all_div_p2 = document.querySelectorAll("div.p2");
-    all_div_p2.forEach((div_p2) => {
-        div_p2.remove();
-    });
-    load_trip(page, keyword);
+    if (!delay) {
+        let page = 0;
+        let keyword = input.value;
+        let all_div_p2 = document.querySelectorAll("div.p2");
+        all_div_p2.forEach((div_p2) => {
+            div_p2.remove();
+        });
+        load_trip(page, keyword);
+    }
 });
 
 input.addEventListener("keyup", (e) => {
