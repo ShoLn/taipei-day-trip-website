@@ -53,6 +53,7 @@ async function load_trip(pg, kw) {
         div_p2.classList.add("p2");
         div_p2.innerText = res_json.message;
         div_p1.appendChild(div_p2);
+        delay = false;
     } else {
         item_num = res_json.data.length;
         for (let i = 0; i < item_num; i++) {
