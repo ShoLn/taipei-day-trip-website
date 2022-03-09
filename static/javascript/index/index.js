@@ -70,6 +70,7 @@ window.addEventListener("scroll", (e) => {
         window.scrollY + window.innerHeight >=
         document.documentElement.scrollHeight - 135
     ) {
+        console.log(document.documentElement.scrollHeight);
         load_trip(page, keyword);
     }
 });
