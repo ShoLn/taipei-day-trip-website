@@ -26,6 +26,7 @@ function generate_pic(number) {
         div_p3.innerText = load_name[i];
         div_p5.innerText = load_mrt[i];
         div_p6.innerText = load_category[i];
+        delay = false;
     }
 }
 
@@ -68,13 +69,15 @@ window.addEventListener("load", (e) => {
 });
 
 // infinite scroll
+let delay = false;
 window.addEventListener("scroll", (e) => {
     if (
         window.scrollY + window.innerHeight >=
         document.documentElement.scrollHeight - 135
     ) {
-        console.log(document.documentElement.scrollHeight);
+        if (!delay) console.log(document.documentElement.scrollHeight);
         load_trip(page, keyword);
+        delay = true;
     }
 });
 
