@@ -2,6 +2,7 @@ let div_p1 = document.querySelector("div.p1");
 
 //create generate html pictre function
 function generate_pic(number) {
+    console.log("generate");
     for (let i = 0; i < number; i++) {
         let div_p2 = document.createElement("div");
         div_p2.classList.add("p2");
