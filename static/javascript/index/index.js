@@ -3,7 +3,6 @@ let delay = false; // sovle internet delay problem
 
 //create generate html pictre function
 function generate_pic(number) {
-    console.log("generate");
     for (let i = 0; i < number; i++) {
         let div_p2 = document.createElement("div");
         div_p2.classList.add("p2");
@@ -35,15 +34,12 @@ function generate_pic(number) {
 let page = 0;
 let keyword = "";
 async function load_trip(pg, kw) {
-    console.log("load_trip");
-    console.log(pg);
     if (pg === null) {
         delay = false;
         return;
     }
     let res = await fetch(`/api/attractions?page=${pg}&keyword=${kw}`);
     let res_json = await res.json();
-    console.log(res_json);
     load_image = [];
     load_name = [];
     load_mrt = [];
@@ -67,12 +63,16 @@ async function load_trip(pg, kw) {
     }
 }
 
-// fetch img when window load
+/////////////////////////////////////////////
+//////// fetch img when window load /////////
+/////////////////////////////////////////////
 window.addEventListener("load", (e) => {
     load_trip(page, keyword);
 });
 
-// infinite scroll
+/////////////////////////////////////////////
+/////////////// infinite scroll /////////////
+/////////////////////////////////////////////
 window.addEventListener("scroll", (e) => {
     if (
         window.scrollY + window.innerHeight >=
@@ -86,14 +86,16 @@ window.addEventListener("scroll", (e) => {
     }
 });
 
-// keyword searching
+/////////////////////////////////////////////
+/////////////// keyword searching ///////////
+/////////////////////////////////////////////
 let input = document.querySelector("input");
 let button = document.querySelector("button");
 
 button.addEventListener("click", (e) => {
     if (!delay) {
-        let page = 0;
-        let keyword = input.value;
+        page = 0;
+        keyword = input.value;
         let all_div_p2 = document.querySelectorAll("div.p2");
         all_div_p2.forEach((div_p2) => {
             div_p2.remove();
@@ -109,7 +111,7 @@ input.addEventListener("keyup", (e) => {
     }
 });
 
-// //以下測試中
+// //以下測試中以下測試中以下測試中以下測試中以下測試中以下測試中以下測試中以下測試中以下測試中以下測試中以下測試中以下測試中以下測試中
 // //intersectionobserver
 // let div_obt = document.querySelector("div.obt");
 // options = {
