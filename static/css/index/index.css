@@ -193,6 +193,7 @@ div.p0 div.p1 div.p2 {
   border-radius: 5px;
   border: #ddd9d9 1px solid;
   margin-bottom: 30px;
+  cursor: pointer;
 }
 
 div.p0 div.p1 div.p2 img {

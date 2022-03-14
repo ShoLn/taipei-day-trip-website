@@ -27,6 +27,9 @@ function generate_pic(number) {
         div_p5.innerText = load_mrt[i];
         div_p6.innerText = load_category[i];
         delay = false;
+        div_p2.addEventListener("click", (e) => {
+            location.href = `/attraction/${load_id[i]}`;
+        });
     }
 }
 
@@ -40,6 +43,7 @@ async function load_trip(pg, kw) {
     }
     let res = await fetch(`/api/attractions?page=${pg}&keyword=${kw}`);
     let res_json = await res.json();
+    load_id = [];
     load_image = [];
     load_name = [];
     load_mrt = [];
@@ -49,10 +53,12 @@ async function load_trip(pg, kw) {
         div_p2.classList.add("p2");
         div_p2.innerText = res_json.message;
         div_p1.appendChild(div_p2);
+        page = null;
         delay = false;
     } else {
         item_num = res_json.data.length;
         for (let i = 0; i < item_num; i++) {
+            load_id.push(res_json.data[i].id);
             load_image.push(res_json.data[i].images[0]);
             load_name.push(res_json.data[i].name);
             load_category.push(res_json.data[i].category);
@@ -73,6 +79,7 @@ window.addEventListener("load", (e) => {
 /////////////////////////////////////////////
 /////////////// infinite scroll /////////////
 /////////////////////////////////////////////
+
 window.addEventListener("scroll", (e) => {
     if (
         window.scrollY + window.innerHeight >=
