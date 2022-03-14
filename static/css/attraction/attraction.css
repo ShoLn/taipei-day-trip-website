@@ -1,0 +1,671 @@
+* {
+  padding: 0;
+  margin: 0;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+  text-decoration: none;
+  list-style: none;
+  font-size: 20px;
+  font-family: "Noto Sans TC";
+  border: 0;
+}
+
+div.nav1 {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  background-color: #ffffff;
+  position: -webkit-sticky;
+  position: sticky;
+  z-index: 200;
+  top: 0;
+  margin-bottom: 37px;
+  border-bottom: 1px #e8e8e8dd solid;
+}
+
+div.nav1 div.nav2 {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  width: 1200px;
+}
+
+div.nav1 div.nav2 div.nav3 {
+  margin: 0.5rem 0;
+  font-size: 1.5rem;
+  font-weight: bolder;
+  color: #448899;
+  padding-left: 10px;
+}
+
+div.nav1 div.nav2 div.nav4 {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: end;
+      -ms-flex-pack: end;
+          justify-content: flex-end;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+div.nav1 div.nav2 div.nav4 div.nav5 {
+  font-size: 0.8rem;
+  font-weight: 400px;
+  color: #666666;
+  margin-right: 0.5rem;
+}
+
+div.c_outermost {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+div.c_outermost div.con_1200 {
+  width: 1200px;
+  height: 406px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-pack: distribute;
+      justify-content: space-around;
+}
+
+div.c_outermost div.con_1200 div.c {
+  width: 45%;
+  height: 100%;
+  position: relative;
+  background-color: green;
+  overflow: hidden;
+}
+
+div.c_outermost div.con_1200 div.c button.c_button {
+  position: absolute;
+  top: 50%;
+  background: transparent;
+  z-index: 100;
+  cursor: pointer;
+}
+
+div.c_outermost div.con_1200 div.c button.c_button img {
+  opacity: 0.8;
+}
+
+div.c_outermost div.con_1200 div.c button.c_left_button {
+  -webkit-transform: translateY(-50%);
+          transform: translateY(-50%);
+  padding-left: 10px;
+}
+
+div.c_outermost div.con_1200 div.c button.c_right_button {
+  left: 100%;
+  -webkit-transform: translate(-100%, -50%);
+          transform: translate(-100%, -50%);
+  padding-right: 10px;
+}
+
+div.c_outermost div.con_1200 div.c div.c_img_container {
+  width: -webkit-max-content;
+  width: -moz-max-content;
+  width: max-content;
+  height: 100%;
+  position: relative;
+}
+
+div.c_outermost div.con_1200 div.c div.c_img_container img.c_img {
+  position: absolute;
+  width: 540px;
+  height: 100%;
+  -o-object-fit: cover;
+     object-fit: cover;
+  border-radius: 5px;
+}
+
+div.c_outermost div.con_1200 div.c div.c_img_container img.current_img {
+  z-index: 99;
+}
+
+div.c_outermost div.con_1200 div.c div.c_dot_container {
+  background-color: transparent;
+  position: absolute;
+  bottom: 0%;
+  z-index: 100;
+  width: 100%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  margin-bottom: 13px;
+}
+
+div.c_outermost div.con_1200 div.c div.c_dot_container button.c_dot {
+  width: 12px;
+  height: 12px;
+  background-color: rgba(255, 255, 255, 0.8);
+  border: 1px rgba(255, 255, 255, 0.8) solid;
+  border-radius: 50%;
+  margin-right: 12px;
+}
+
+div.c_outermost div.con_1200 div.c div.c_dot_container button.current_dot {
+  background-color: black;
+}
+
+div.c_outermost div.con_1200 div.t {
+  width: 50%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-pack: space-evenly;
+      -ms-flex-pack: space-evenly;
+          justify-content: space-evenly;
+}
+
+div.c_outermost div.con_1200 div.t div.name {
+  color: #666666;
+  font-size: 24px;
+  font-weight: 700;
+}
+
+div.c_outermost div.con_1200 div.t div.cate_mrt {
+  color: #666666;
+  font-size: 16px;
+  font-weight: 400;
+}
+
+div.c_outermost div.con_1200 div.t form {
+  padding-left: 20px;
+  background-color: #e8e8e8;
+  border-radius: 5px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-pack: space-evenly;
+      -ms-flex-pack: space-evenly;
+          justify-content: space-evenly;
+  height: 302px;
+}
+
+div.c_outermost div.con_1200 div.t form div.choose0 {
+  color: #666666;
+  font-size: 16px;
+  font-weight: 700;
+}
+
+div.c_outermost div.con_1200 div.t form div.choose1 {
+  color: #666666;
+  font-size: 16px;
+  font-weight: 400;
+}
+
+div.c_outermost div.con_1200 div.t form label.date {
+  color: #666666;
+  font-size: 16px;
+  font-weight: 700;
+}
+
+div.c_outermost div.con_1200 div.t form div.time {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  color: #666666;
+  font-size: 16px;
+  font-weight: 700;
+  margin-right: 12px;
+}
+
+div.c_outermost div.con_1200 div.t form div.time input {
+  margin-right: 6px;
+  width: 18px;
+  height: 18px;
+  accent-color: #448899;
+}
+
+div.c_outermost div.con_1200 div.t form div.time label {
+  font-size: 16px;
+  margin-right: 18px;
+}
+
+div.c_outermost div.con_1200 div.t form div.money {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+}
+
+div.c_outermost div.con_1200 div.t form div.money div.money0 {
+  color: #666666;
+  font-size: 16px;
+  font-weight: 700;
+}
+
+div.c_outermost div.con_1200 div.t form div.money div.money1 {
+  color: #666666;
+  font-size: 16px;
+  font-weight: 400;
+  margin-left: 5px;
+}
+
+div.c_outermost div.con_1200 div.t form button {
+  width: 154px;
+  height: 36px;
+  background-color: #448899;
+  color: #ffffff;
+  border-radius: 5px;
+  font-size: 19px;
+  font-weight: 400;
+  padding: 0px 20px;
+  cursor: pointer;
+}
+
+div.c_outermost hr {
+  border-bottom: 1px #e8e8e8dd solid;
+  margin-top: 37px;
+  margin-bottom: 50px;
+  width: 1200px;
+}
+
+div.c_outermost div.content {
+  width: 1200px;
+  margin-bottom: 120px;
+  line-height: 23px;
+}
+
+div.c_outermost div.content div.description {
+  color: #666666;
+  font-size: 16px;
+  font-weight: 400;
+  margin-bottom: 20px;
+}
+
+div.c_outermost div.content div.address {
+  margin-bottom: 20px;
+}
+
+div.c_outermost div.content div.address div.address0 {
+  color: #666666;
+  font-size: 16px;
+  font-weight: 700;
+}
+
+div.c_outermost div.content div.address div.address1 {
+  color: #666666;
+  font-size: 16px;
+  font-weight: 400;
+}
+
+div.c_outermost div.content div.trans div.trans0 {
+  color: #666666;
+  font-size: 16px;
+  font-weight: 700;
+}
+
+div.c_outermost div.content div.trans div.trans1 {
+  color: #666666;
+  font-size: 16px;
+  font-weight: 400;
+}
+
+div.l1 {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  background-color: #757575;
+  margin-top: 25px;
+  height: 104px;
+}
+
+div.l1 div.l2 {
+  font-size: 0.8rem;
+  color: #ffffff;
+  font-weight: 700;
+  margin: 2.25rem 0;
+}
+
+@media screen and (max-width: 1200px) {
+  div.nav1 {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-pack: center;
+        -ms-flex-pack: center;
+            justify-content: center;
+    -webkit-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
+    background-color: #ffffff;
+    position: -webkit-sticky;
+    position: sticky;
+    top: 0;
+  }
+  div.nav1 div.nav2 {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-pack: justify;
+        -ms-flex-pack: justify;
+            justify-content: space-between;
+    -webkit-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
+    width: 100vw;
+  }
+  div.nav1 div.nav2 div.nav3 {
+    margin: 0.5rem 0;
+    font-size: 1.5rem;
+    font-weight: bolder;
+    color: #448899;
+    padding-left: 10px;
+  }
+  div.nav1 div.nav2 div.nav4 {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-pack: end;
+        -ms-flex-pack: end;
+            justify-content: flex-end;
+    -webkit-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
+  }
+  div.nav1 div.nav2 div.nav4 div.nav5 {
+    font-size: 0.8rem;
+    font-weight: 400px;
+    color: #666666;
+    margin-right: 0.5rem;
+  }
+  div.c_outermost {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+            flex-direction: column;
+    -webkit-box-pack: center;
+        -ms-flex-pack: center;
+            justify-content: center;
+    -webkit-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
+  }
+  div.c_outermost div.con_1200 {
+    width: 100vw;
+    height: 760px;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+            flex-direction: column;
+    -ms-flex-pack: distribute;
+        justify-content: space-around;
+    -webkit-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
+  }
+  div.c_outermost div.con_1200 div.c {
+    width: 100vw;
+    height: 350px;
+    position: relative;
+    background-color: green;
+    overflow: hidden;
+  }
+  div.c_outermost div.con_1200 div.c button.c_button {
+    position: absolute;
+    top: 50%;
+    background: transparent;
+    z-index: 100;
+    cursor: pointer;
+  }
+  div.c_outermost div.con_1200 div.c button.c_button img {
+    opacity: 0.8;
+  }
+  div.c_outermost div.con_1200 div.c button.c_left_button {
+    -webkit-transform: translateY(-50%);
+            transform: translateY(-50%);
+    padding-left: 10px;
+  }
+  div.c_outermost div.con_1200 div.c button.c_right_button {
+    left: 100%;
+    -webkit-transform: translate(-100%, -50%);
+            transform: translate(-100%, -50%);
+    padding-right: 10px;
+  }
+  div.c_outermost div.con_1200 div.c div.c_img_container {
+    width: -webkit-max-content;
+    width: -moz-max-content;
+    width: max-content;
+    height: 100%;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-transition: -webkit-transform 0.1s ease-in;
+    transition: -webkit-transform 0.1s ease-in;
+    transition: transform 0.1s ease-in;
+    transition: transform 0.1s ease-in, -webkit-transform 0.1s ease-in;
+  }
+  div.c_outermost div.con_1200 div.c div.c_img_container img.c_img {
+    width: 100vw;
+    height: 100%;
+    -o-object-fit: cover;
+       object-fit: cover;
+    border-radius: 5px;
+  }
+  div.c_outermost div.con_1200 div.c div.c_dot_container {
+    background-color: transparent;
+    position: absolute;
+    bottom: 0%;
+    z-index: 100;
+    width: 100%;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-pack: center;
+        -ms-flex-pack: center;
+            justify-content: center;
+    margin-bottom: 13px;
+  }
+  div.c_outermost div.con_1200 div.c div.c_dot_container button.c_dot {
+    width: 12px;
+    height: 12px;
+    background-color: rgba(255, 255, 255, 0.8);
+    border: 1px rgba(255, 255, 255, 0.8) solid;
+    border-radius: 50%;
+    margin-right: 12px;
+  }
+  div.c_outermost div.con_1200 div.c div.c_dot_container button.current_dot {
+    background-color: black;
+  }
+  div.c_outermost div.con_1200 div.t {
+    width: 94vw;
+    height: 300px;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+            flex-direction: column;
+    -webkit-box-pack: space-evenly;
+        -ms-flex-pack: space-evenly;
+            justify-content: space-evenly;
+  }
+  div.c_outermost div.con_1200 div.t div.name {
+    color: #666666;
+    font-size: 24px;
+    font-weight: 700;
+    margin-top: 20px;
+    margin-bottom: 15px;
+  }
+  div.c_outermost div.con_1200 div.t div.cate_mrt {
+    color: #666666;
+    font-size: 16px;
+    font-weight: 400;
+    margin-bottom: 20px;
+  }
+  div.c_outermost div.con_1200 div.t form {
+    padding-left: 20px;
+    background-color: #e8e8e8;
+    border-radius: 5px;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+            flex-direction: column;
+    -webkit-box-pack: space-evenly;
+        -ms-flex-pack: space-evenly;
+            justify-content: space-evenly;
+    height: 302px;
+  }
+  div.c_outermost div.con_1200 div.t form div.choose0 {
+    color: #666666;
+    font-size: 16px;
+    font-weight: 700;
+  }
+  div.c_outermost div.con_1200 div.t form div.choose1 {
+    color: #666666;
+    font-size: 16px;
+    font-weight: 400;
+  }
+  div.c_outermost div.con_1200 div.t form label.date {
+    color: #666666;
+    font-size: 16px;
+    font-weight: 700;
+  }
+  div.c_outermost div.con_1200 div.t form div.time {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
+    color: #666666;
+    font-size: 16px;
+    font-weight: 700;
+    margin-right: 12px;
+  }
+  div.c_outermost div.con_1200 div.t form div.time input {
+    margin-right: 6px;
+    width: 18px;
+    height: 18px;
+    accent-color: #448899;
+  }
+  div.c_outermost div.con_1200 div.t form div.time label {
+    font-size: 16px;
+    margin-right: 18px;
+  }
+  div.c_outermost div.con_1200 div.t form div.money {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+  }
+  div.c_outermost div.con_1200 div.t form div.money div.money0 {
+    color: #666666;
+    font-size: 16px;
+    font-weight: 700;
+  }
+  div.c_outermost div.con_1200 div.t form div.money div.money1 {
+    color: #666666;
+    font-size: 16px;
+    font-weight: 400;
+    margin-left: 5px;
+  }
+  div.c_outermost div.con_1200 div.t form button {
+    width: 154px;
+    height: 36px;
+    background-color: #448899;
+    color: #ffffff;
+    border-radius: 5px;
+    font-size: 19px;
+    font-weight: 400;
+    padding: 0px 20px;
+    cursor: pointer;
+  }
+  div.c_outermost hr {
+    border-bottom: 1px #e8e8e8dd solid;
+    margin-top: 37px;
+    margin-bottom: 50px;
+    width: 100vw;
+  }
+  div.c_outermost div.content {
+    width: 92vw;
+    margin-bottom: 120px;
+    line-height: 23px;
+  }
+  div.c_outermost div.content div.description {
+    color: #666666;
+    font-size: 16px;
+    font-weight: 400;
+    margin-bottom: 20px;
+  }
+  div.c_outermost div.content div.address {
+    margin-bottom: 20px;
+  }
+  div.c_outermost div.content div.address div.address0 {
+    color: #666666;
+    font-size: 16px;
+    font-weight: 700;
+  }
+  div.c_outermost div.content div.address div.address1 {
+    color: #666666;
+    font-size: 16px;
+    font-weight: 400;
+  }
+  div.c_outermost div.content div.trans div.trans0 {
+    color: #666666;
+    font-size: 16px;
+    font-weight: 700;
+  }
+  div.c_outermost div.content div.trans div.trans1 {
+    color: #666666;
+    font-size: 16px;
+    font-weight: 400;
+  }
+}
+/*# sourceMappingURL=attraction.css.map */

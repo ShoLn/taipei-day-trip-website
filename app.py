@@ -1,34 +1,43 @@
 from flask import *
 from mysql.connector import pooling
-app=Flask(__name__)
-app.config["JSON_AS_ASCII"]=False
-app.config["TEMPLATES_AUTO_RELOAD"]=True
+app = Flask(__name__)
+app.config["JSON_AS_ASCII"] = False
+app.config["TEMPLATES_AUTO_RELOAD"] = True
 app.config['JSON_SORT_KEYS'] = False
 
 pool_object = pooling.MySQLConnectionPool(
-            pool_size=5,
-            pool_name='mypoolname',
-            pool_reset_session=True,
-            host='localhost',
-            user='root',
-            password='password',
-            database='website',
-            auth_plugin="mysql_native_password"
-        )
+    pool_size=5,
+    pool_name='mypoolname',
+    pool_reset_session=True,
+    host='localhost',
+    user='root',
+    password='password',
+    database='website',
+    auth_plugin="mysql_native_password"
+)
 
 # Pages
+
+
 @app.route("/")
 def index():
-	return render_template("index.html")
+    return render_template("index.html")
+
+
 @app.route("/attraction/<id>")
 def attraction(id):
-	return render_template("attraction.html")
+    
+    return render_template("attraction.html", attrac_id = id)
+
+
 @app.route("/booking")
 def booking():
-	return render_template("booking.html")
+    return render_template("booking.html")
+
+
 @app.route("/thankyou")
 def thankyou():
-	return render_template("thankyou.html")
+    return render_template("thankyou.html")
 
 
 # Api 旅遊景點-取得景點資料列表
@@ -37,12 +46,12 @@ def get_trip():
     error_dict = {
         "error": True,
         "message": None
-        }
+    }
 
-    page = int(request.args.get('page',0))
-    keyword = request.args.get('keyword',"")
+    page = int(request.args.get('page', 0))
+    keyword = request.args.get('keyword', "")
     cnt_pool_obj = pool_object.get_connection()
-    cursor = cnt_pool_obj.cursor(dictionary=True,buffered=True)
+    cursor = cnt_pool_obj.cursor(dictionary=True, buffered=True)
     sql = 'SELECT COUNT(*) FROM `taipei_trip` WHERE `name` LIKE %s ;'
     val = ("%" + keyword + "%",)
     cursor.execute(sql, val)
@@ -56,21 +65,21 @@ def get_trip():
         res.headers["Content-Type"] = "application/json"
         return res
 
-    count_div = divmod(count,12)
+    count_div = divmod(count, 12)
 
     if count_div[1] == 0:
-        all_page = count_div[0] - 1 
+        all_page = count_div[0] - 1
         last_page_number = 0
-    else :
-        all_page = count_div[0] 
+    else:
+        all_page = count_div[0]
         last_page_number = count_div[1]
-    
-    if page > all_page :
+
+    if page > all_page:
         error_dict['message'] = '所選頁數超過總頁數'
         cursor.close()
         cnt_pool_obj.close()
         res = make_response(jsonify(error_dict))
-        res.headers["Content-Type"] = "application/json"            
+        res.headers["Content-Type"] = "application/json"
         return res
     elif page == all_page:
         sql = 'SELECT * FROM `taipei_trip` WHERE `name` LIKE %s LIMIT %s,%s ;'
@@ -107,15 +116,17 @@ def get_trip():
         return res
 
 # Api 旅遊景點-根據景點編號取得景點資料
-@app.route('/api/attraction/', defaults={'attractionid':'1'})
+
+
+@app.route('/api/attraction/', defaults={'attractionid': '1'})
 @app.route('/api/attraction/<path:attractionid>')
 def id_get_trip(attractionid):
     error_dict = {
-    "error": True,
-    "message": None
+        "error": True,
+        "message": None
     }
     cnt_pool_obj = pool_object.get_connection()
-    cursor = cnt_pool_obj.cursor(dictionary=True,buffered=True)
+    cursor = cnt_pool_obj.cursor(dictionary=True, buffered=True)
     sql = 'SELECT * FROM `taipei_trip` WHERE `id` = %s ;'
     val = (attractionid,)
     cursor.execute(sql, val)
@@ -128,7 +139,7 @@ def id_get_trip(attractionid):
         res.headers["Content-Type"] = "application/json"
         return res
     else:
-        select_data_dict['images'] =  select_data_dict['images'].split(' ')
+        select_data_dict['images'] = select_data_dict['images'].split(' ')
         ans_dict = {
             'data': select_data_dict
         }
@@ -139,7 +150,4 @@ def id_get_trip(attractionid):
         return res
 
 
-
-
-
-app.run(host='0.0.0.0', port=3000)
+app.run(host='0.0.0.0', port=3000, debug=True)
