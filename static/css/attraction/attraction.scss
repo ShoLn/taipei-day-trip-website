@@ -157,6 +157,9 @@ div.c_outermost {
                     font-size: 16px;
                     font-weight: 700;
                 }
+                input.date {
+                    background-color: #ffffff;
+                }
                 div.time {
                     display: flex;
                     align-items: center;
@@ -412,7 +415,9 @@ div.l1 {
                         font-size: 16px;
                         font-weight: 700;
                     }
-                    
+                    input.date {
+                        background-color: #ffffff;
+                    }
                     div.time {
                         display: flex;
                         align-items: center;

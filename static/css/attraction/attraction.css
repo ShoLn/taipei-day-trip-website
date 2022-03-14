@@ -237,6 +237,10 @@ div.c_outermost div.con_1200 div.t form label.date {
   font-weight: 700;
 }
 
+div.c_outermost div.con_1200 div.t form input.date {
+  background-color: #ffffff;
+}
+
 div.c_outermost div.con_1200 div.t form div.time {
   display: -webkit-box;
   display: -ms-flexbox;
@@ -575,6 +579,9 @@ div.l1 div.l2 {
     color: #666666;
     font-size: 16px;
     font-weight: 700;
+  }
+  div.c_outermost div.con_1200 div.t form input.date {
+    background-color: #ffffff;
   }
   div.c_outermost div.con_1200 div.t form div.time {
     display: -webkit-box;
