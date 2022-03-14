@@ -303,7 +303,7 @@ div.c_outermost hr {
 div.c_outermost div.content {
   width: 1200px;
   margin-bottom: 120px;
-  line-height: 23px;
+  line-height: 30px;
 }
 
 div.c_outermost div.content div.description {
@@ -634,7 +634,7 @@ div.l1 div.l2 {
   div.c_outermost div.content {
     width: 92vw;
     margin-bottom: 120px;
-    line-height: 23px;
+    line-height: 30px;
   }
   div.c_outermost div.content div.description {
     color: #666666;
