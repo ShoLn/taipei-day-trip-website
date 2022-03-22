@@ -33,10 +33,14 @@ div.nav1 {
             justify-content: flex-end;
             align-items: center;
             div.nav5 {
+                display: flex;
                 font-size: 0.8rem;
                 font-weight: 400px;
                 color: #666666;
                 margin-right: 0.5rem;
+                height: 62px;
+                align-items: center;
+                cursor: pointer;
             }
         }
     }
@@ -193,7 +197,6 @@ div.l1 {
                 padding-left: 10px;
             }
             div.nav4 {
-                display: flex;
                 justify-content: flex-end;
                 align-items: center;
                 div.nav5 {
@@ -303,4 +306,112 @@ div.l1 {
             margin: 2.25rem 0;
         }
     }
+}
+
+//popup both login and signin
+.pop_outest {
+    display: none;
+    position: fixed;
+    top: 0;
+    width: 100vw;
+    height: 100vh;
+    background-color: rgba(0, 0, 0, 0.4);
+    justify-content: center;
+}
+//login
+div.pop_container_login {
+    width: 340px;
+    height: 275px;
+    margin-top: 80px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    border-radius: 5px;
+    background-color: #ffffff;
+}
+//signup
+div.pop_container_signup {
+    width: 340px;
+    height: 360px;
+    margin-top: 80px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    border-radius: 5px;
+    background-color: #ffffff;
+}
+//popup both login and signup
+div.top_color {
+    width: 340px;
+    height: 10px;
+    background: linear-gradient(270deg, #337788 0%, #66aabb 100%);
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
+}
+div.pop0 {
+    width: 310px;
+    height: 27px;
+    font-weight: 700;
+    font-size: 24px;
+    line-height: 24px;
+    color: #666666;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    img {
+        position: absolute;
+        right: 0px;
+        cursor: pointer;
+    }
+}
+input {
+    width: 310px;
+    min-height: 47px;
+    padding: 15px;
+    font-weight: 400;
+    font-size: 16px;
+    color: #666666;
+    border: 1px solid #cccccc;
+    border-radius: 5px;
+}
+button {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 310px;
+    height: 47px;
+    background: #448899;
+    border-radius: 5px;
+    color: #ffffff;
+    font-weight: 400;
+    font-size: 19px;
+    line-height: 16px;
+    border: none;
+    cursor: pointer;
+}
+div.pop1 {
+    display: flex;
+    justify-content: center;
+    font-weight: 400;
+    font-size: 16px;
+    color: #666666;
+    width: 310px;
+    height: 22px;
+    margin-bottom: 15px;
+    cursor: pointer;
+}
+
+// signout
+.signout {
+    font-size: 0.8rem;
+    font-weight: 400px;
+    color: #666666;
+    margin-right: 0.5rem;
+    height: 62px;
+    display: flex;
+    align-items: center;
+    cursor: pointer;
 }

@@ -1,4 +1,4 @@
-let attrac_id = document.querySelector("div.attrac_id").id; // 景點id編號
+let attrac_id = window.location.pathname.split("/")[2]; //取得景點編號
 let img_container = document.querySelector("div.c_img_container"); // 圖片容器div
 let dot_container = document.querySelector("div.c_dot_container"); // 圓點容器
 
@@ -91,3 +91,5 @@ async function load_attrac_id() {
     let trans = document.querySelector("div.trans1");
     trans.innerText = data.transport;
 }
+
+

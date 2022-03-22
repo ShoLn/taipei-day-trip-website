@@ -67,17 +67,21 @@ async function load_trip(pg, kw) {
         generate_pic(item_num);
         page = res_json.nextPage;
     }
+    if (window.innerHeight == document.documentElement.scrollHeight) {
+        load_trip(page, keyword);
+    }
 }
 
+
 /////////////////////////////////////////////
-//////// fetch img when window load /////////
+//////// window load EVENT //////////////////
 /////////////////////////////////////////////
 window.addEventListener("load", (e) => {
     load_trip(page, keyword);
 });
 
 /////////////////////////////////////////////
-/////////////// infinite scroll /////////////
+/////////////// infinite scroll EVENT ///////
 /////////////////////////////////////////////
 
 window.addEventListener("scroll", (e) => {
@@ -100,6 +104,7 @@ let input = document.querySelector("input");
 let button = document.querySelector("button");
 
 button.addEventListener("click", (e) => {
+    console.log("ccc");
     if (!delay) {
         page = 0;
         keyword = input.value;

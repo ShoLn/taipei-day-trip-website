@@ -67,6 +67,14 @@ div.nav1 div.nav2 div.nav4 div.nav5 {
   font-weight: 400px;
   color: #666666;
   margin-right: 0.5rem;
+  cursor: pointer;
+  height: 62px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
 }
 
 div.c_outermost {
@@ -104,6 +112,7 @@ div.c_outermost div.con_1200 div.c {
 
 div.c_outermost div.con_1200 div.c button.c_button {
   position: absolute;
+  width: 36px;
   top: 50%;
   background: transparent;
   z-index: 100;
@@ -382,6 +391,7 @@ div.l1 div.l2 {
     position: -webkit-sticky;
     position: sticky;
     top: 0;
+    margin-bottom: 0px;
   }
   div.nav1 div.nav2 {
     display: -webkit-box;
@@ -403,9 +413,6 @@ div.l1 div.l2 {
     padding-left: 10px;
   }
   div.nav1 div.nav2 div.nav4 {
-    display: -webkit-box;
-    display: -ms-flexbox;
-    display: flex;
     -webkit-box-pack: end;
         -ms-flex-pack: end;
             justify-content: flex-end;
@@ -672,5 +679,158 @@ div.l1 div.l2 {
     font-size: 16px;
     font-weight: 400;
   }
+}
+
+.pop_outest {
+  display: none;
+  position: fixed;
+  top: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(0, 0, 0, 0.4);
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  z-index: 999;
+}
+
+div.pop_container_login {
+  width: 340px;
+  height: 275px;
+  margin-top: 80px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  border-radius: 5px;
+  background-color: #ffffff;
+}
+
+div.pop_container_signup {
+  width: 340px;
+  height: 360px;
+  margin-top: 80px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  border-radius: 5px;
+  background-color: #ffffff;
+}
+
+div.top_color {
+  width: 340px;
+  height: 10px;
+  background: -webkit-gradient(linear, right top, left top, from(#337788), to(#66aabb));
+  background: linear-gradient(270deg, #337788 0%, #66aabb 100%);
+  border-top-left-radius: 5px;
+  border-top-right-radius: 5px;
+}
+
+div.pop0 {
+  width: 310px;
+  height: 27px;
+  font-weight: 700;
+  font-size: 24px;
+  line-height: 24px;
+  color: #666666;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  position: relative;
+}
+
+div.pop0 img {
+  position: absolute;
+  right: 0px;
+  cursor: pointer;
+}
+
+input {
+  width: 310px;
+  min-height: 47px;
+  padding: 15px;
+  font-weight: 400;
+  font-size: 16px;
+  color: #666666;
+  border: 1px solid #cccccc;
+  border-radius: 5px;
+}
+
+button {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  width: 310px;
+  height: 47px;
+  background: #448899;
+  border-radius: 5px;
+  color: #ffffff;
+  font-weight: 400;
+  font-size: 19px;
+  line-height: 16px;
+  border: none;
+  cursor: pointer;
+}
+
+div.pop1 {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  font-weight: 400;
+  font-size: 16px;
+  color: #666666;
+  width: 310px;
+  height: 22px;
+  margin-bottom: 15px;
+  cursor: pointer;
+}
+
+.signout {
+  font-size: 0.8rem;
+  font-weight: 400px;
+  color: #666666;
+  margin-right: 0.5rem;
+  height: 62px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  cursor: pointer;
 }
 /*# sourceMappingURL=attraction.css.map */

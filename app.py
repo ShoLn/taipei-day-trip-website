@@ -1,9 +1,11 @@
 from flask import *
-from mysql.connector import pooling
+from mysql.connector import pooling, Error
+import jwt
 app = Flask(__name__)
 app.config["JSON_AS_ASCII"] = False
 app.config["TEMPLATES_AUTO_RELOAD"] = True
 app.config['JSON_SORT_KEYS'] = False
+app.config['SECRET_KEY'] = 'wehelp'
 
 pool_object = pooling.MySQLConnectionPool(
     pool_size=5,
@@ -26,8 +28,7 @@ def index():
 
 @app.route("/attraction/<id>")
 def attraction(id):
-    
-    return render_template("attraction.html", attrac_id = id)
+    return render_template("attraction.html")
 
 
 @app.route("/booking")
@@ -39,8 +40,11 @@ def booking():
 def thankyou():
     return render_template("thankyou.html")
 
+#################################################################################
+########################### Api 旅遊景點-取得景點資料列表 ###########################
+#################################################################################
 
-# Api 旅遊景點-取得景點資料列表
+
 @app.route("/api/attractions")
 def get_trip():
     error_dict = {
@@ -114,8 +118,9 @@ def get_trip():
         res = make_response(jsonify(ans_dict))
         res.headers["Content-Type"] = "application/json"
         return res
-
-# Api 旅遊景點-根據景點編號取得景點資料
+#################################################################################
+########################### Api 旅遊景點-根據景點編號取得景點資料 ####################
+#################################################################################
 
 
 @app.route('/api/attraction/', defaults={'attractionid': '1'})
@@ -147,6 +152,91 @@ def id_get_trip(attractionid):
         cnt_pool_obj.close()
         res = make_response(jsonify(ans_dict))
         res.headers["Content-Type"] = "application/json"
+        return res
+
+
+##################################################################
+############################ Api 使用者 ###########################
+##################################################################
+
+@app.route('/api/user', methods=['GET', 'POST', 'PATCH', 'DELETE'])
+def user():
+    # GET方法
+    if request.method == 'GET':
+        token = request.cookies.get('JWT')
+        if token:
+            try:
+                user_data = jwt.decode(
+                    token, app.config['SECRET_KEY'], algorithms=["HS256"])
+                return jsonify({
+                    "data": user_data
+                }), 200
+            except:
+                return jsonify({'null': True})
+        return jsonify({'null': True})
+    # POST方法 註冊
+    elif request.method == 'POST':
+        name = request.json.get('name', None)
+        email = request.json.get('email', None)
+        password = request.json.get('password', None)
+        try:
+            cnt_pool_obj = pool_object.get_connection()
+            cursor = cnt_pool_obj.cursor(dictionary=True, buffered=True)
+            sql = 'INSERT INTO `taipei_trip_member`(`name`, `email`, `password`) VALUES (%s,%s,%s); '
+            val = (name, email, password)
+            print(1111)
+            cursor.execute(sql, val)
+            print(2222)
+            cnt_pool_obj.commit()
+            return jsonify({'ok': True}), 200
+        except Error as e:
+            if e.errno == 1062:
+                duplicate_column = e.args[1].split(" ")[7][20:-1]
+                return jsonify({"error": True,
+                                "message": "此 {} 已經有人使用".format(duplicate_column)}), 200
+        except:
+            return jsonify({'error': True,
+                            'message': "伺服器內部錯誤"}), 500
+        finally:
+                cnt_pool_obj.rollback()
+                cursor.close()
+                cnt_pool_obj.close()
+    # PATCH方法 登入
+    elif request.method == 'PATCH':
+        email = request.json.get('email', None)
+        password = request.json.get('password', None)
+        try:
+            cnt_pool_obj = pool_object.get_connection()
+            cursor = cnt_pool_obj.cursor(dictionary=True, buffered=True)
+            sql = 'SELECT * FROM `taipei_trip_member` WHERE `email`= %s AND `password`=%s ;'
+            val = (email, password)
+            cursor.execute(sql, val)
+            user_data = cursor.fetchone()
+            if user_data is None:
+                return jsonify({"error": True,
+                                "message": "EMAIL或密碼錯誤"})
+            else:
+                res_data = {"ok": True}
+                res = make_response(res_data, 200)
+                token = jwt.encode({
+                    'id': user_data.get('id'),
+                    'name': user_data.get('name'),
+                    'email': user_data.get('email')
+                }, app.config['SECRET_KEY'])
+                res.set_cookie('JWT', token, httponly=True)
+                return res
+        except:
+            return jsonify({"error": True,
+                            "message": "伺服器內部錯誤"}), 500
+        finally:
+                cnt_pool_obj.rollback()
+                cursor.close()
+                cnt_pool_obj.close()
+    # DELETE方法 登出
+    elif request.method == "DELETE":
+        res_data = {"ok": True}
+        res = make_response(res_data)
+        res.delete_cookie('JWT')
         return res
 
 

@@ -1,0 +1,20 @@
+.a {
+    width: 500px;
+    height: 500px;
+    background-color: red;
+}
+
+div.a button{
+    width: 200px;
+    height: 200px;
+}
+
+.b {
+    display: none;
+    position: fixed;
+    top: 0;
+    width: 100vw;
+    height: 100vh;
+    background-color: rgba(0, 0, 0, 0.4);
+    justify-content: center;
+}
