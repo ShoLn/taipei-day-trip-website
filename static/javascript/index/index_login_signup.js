@@ -15,6 +15,34 @@ let signup_email = pop_signup.querySelector("input[name='email']"); //註冊信�
 let signup_password = pop_signup.querySelector("input[name='password']"); // 註冊密碼
 let signup = pop_signup.querySelector("button"); // 註冊按鈕
 
+// 每次載入頁時面使用get /api/user 判斷是否已經登入 及 delete /api/suer製作登出按鈕
+window.addEventListener("load", (e) => {
+    //determine login
+    let res_login = api_user("GET", null);
+    res_login.then((res_json) => {
+        if (res_json.null) {
+            return;
+        } else {
+            let login_signup = document.querySelectorAll("div.nav5")[1];
+            login_signup.style.display = "none";
+            let signout = document.createElement("div");
+            signout.innerText = "登出系統";
+            signout.classList.add("signout");
+            let div_nav4 = document.querySelector("div.nav4");
+            div_nav4.appendChild(signout);
+            // signout click event useing delete api
+            signout.addEventListener("click", (e) => {
+                let res_logout = api_user("DELETE", null);
+                res_logout.then((res_json) => {
+                    if (res_json.ok) {
+                        location.href = window.location.href;
+                    }
+                });
+            });
+        }
+    });
+});
+
 //清除之前登入失敗或成功訊息的function
 
 function delete_message(pop) {
@@ -156,34 +184,6 @@ login.addEventListener("click", (e) => {
             error_message.innerText = res_json.message;
             error_message.style.color = "red";
             login.after(error_message);
-        }
-    });
-});
-
-// 每次載入頁時面使用get /api/user 判斷是否已經登入 及 delete /api/suer製作登出按鈕
-window.addEventListener("load", (e) => {
-    //determine login
-    let res_login = api_user("GET", null);
-    res_login.then((res_json) => {
-        if (res_json.null) {
-            return;
-        } else {
-            let login_signup = document.querySelectorAll("div.nav5")[1];
-            login_signup.style.display = "none";
-            let signout = document.createElement("div");
-            signout.innerText = "登出系統";
-            signout.classList.add("signout");
-            let div_nav4 = document.querySelector("div.nav4");
-            div_nav4.appendChild(signout);
-            // signout click event useing delete api
-            signout.addEventListener("click", (e) => {
-                let res_logout = api_user("DELETE", null);
-                res_logout.then((res_json) => {
-                    if (res_json.ok) {
-                        location.href = window.location.href;
-                    }
-                });
-            });
         }
     });
 });
