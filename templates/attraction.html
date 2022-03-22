@@ -8,8 +8,6 @@
         <link rel="stylesheet" href="/static/css/attraction/attraction.css" />
     </head>
     <body>
-        <!-- 傳送景點id用 -->
-        <div class="attrac_id" id="{{attrac_id}}"></div>
         <!-- nav -->
         <div class="nav1">
             <div class="nav2">
@@ -56,7 +54,12 @@
                                 <label class="date" for="date"
                                     >選擇日期：</label
                                 >
-                                <input type="date" name="date" id="date" class="date"/>
+                                <input
+                                    type="date"
+                                    name="date"
+                                    id="date"
+                                    class="date"
+                                />
                             </div>
                             <div class="time">
                                 <div class="time">選擇時間：</div>
@@ -101,6 +104,64 @@
                 </div>
             </div>
         </div>
+        <!-- login -->
+        <div class="pop_outest">
+            <div class="pop_container_login">
+                <div class="top_color"></div>
+                <div class="pop0">
+                    登入會員帳號<img
+                        src="/static/image/icon/icon_close.png"
+                        alt=""
+                    />
+                </div>
+                <input
+                    type="email"
+                    name="email"
+                    placeholder="輸入電子信箱"
+                    required
+                />
+                <input
+                    type="password"
+                    name="password"
+                    placeholder="輸入密碼"
+                    required
+                />
+                <button>登入帳戶</button>
+                <div class="pop1">還沒有帳戶？點此註冊</div>
+            </div>
+        </div>
+        <!-- signup -->
+        <div class="pop_outest">
+            <div class="pop_container_signup">
+                <div class="top_color"></div>
+                <div class="pop0">
+                    註冊會員帳號<img
+                        src="/static/image/icon/icon_close.png"
+                        alt=""
+                    />
+                </div>
+                <input
+                    type="text"
+                    name="name"
+                    placeholder="輸入姓名"
+                    required
+                />
+                <input
+                    type="email"
+                    name="email"
+                    placeholder="輸入電子信箱"
+                    required
+                />
+                <input
+                    type="password"
+                    name="password"
+                    placeholder="輸入密碼"
+                    required
+                />
+                <button>註冊新帳戶</button>
+                <div class="pop1">已經有帳戶了？點此登入</div>
+            </div>
+        </div>
         <!-- last -->
         <div class="l1">
             <div class="l2">COPYRIGHT © 2021 台北一日遊</div>
@@ -110,4 +171,5 @@
         type="text/javascript"
         src="/static/javascript/attraction/attraction.js"
     ></script>
+    <script src="/static/javascript/index/index_login_signup.js"></script>
 </html>
