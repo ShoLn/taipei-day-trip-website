@@ -161,7 +161,6 @@ form div.s1 img.icon_delete {
 
 form div.u0 {
   max-width: 980px;
-  height: 227px;
   margin: 0 110px;
   display: -webkit-box;
   display: -ms-flexbox;
@@ -170,21 +169,23 @@ form div.u0 {
   -webkit-box-direction: normal;
       -ms-flex-direction: column;
           flex-direction: column;
-  -webkit-box-pack: justify;
-      -ms-flex-pack: justify;
-          justify-content: space-between;
+  -webkit-box-pack: start;
+      -ms-flex-pack: start;
+          justify-content: flex-start;
 }
 
 form div.u0 div.u1 {
   font-weight: 700;
   font-size: 19px;
   color: #666666;
+  margin-bottom: 24px;
 }
 
 form div.u0 div.u2 {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
+  margin-bottom: 15px;
 }
 
 form div.u0 div.u2 label {
@@ -202,8 +203,8 @@ form div.u0 div.u2 label {
 form div.u0 div.u2 input {
   width: 200px;
   height: 38px;
-  padding: 10px;
-  border: 1.5px solid #e8e8e8;
+  padding: 0px 5px;
+  border: 1px solid #e8e8e8;
   border-radius: 5px;
   font-weight: 400;
   font-size: 16px;
@@ -217,8 +218,7 @@ form div.u0 div.u3 {
 }
 
 form div.c0 {
-  max-width: 980;
-  height: 188px;
+  max-width: 980px;
   margin: 0 110px;
   display: -webkit-box;
   display: -ms-flexbox;
@@ -227,21 +227,23 @@ form div.c0 {
   -webkit-box-direction: normal;
       -ms-flex-direction: column;
           flex-direction: column;
-  -webkit-box-pack: justify;
-      -ms-flex-pack: justify;
-          justify-content: space-between;
+  -webkit-box-pack: start;
+      -ms-flex-pack: start;
+          justify-content: flex-start;
 }
 
 form div.c0 div.c1 {
   font-weight: 700;
   font-size: 19px;
   color: #666666;
+  margin-bottom: 24px;
 }
 
 form div.c0 div.c2 {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
+  margin-bottom: 15px;
 }
 
 form div.c0 div.c2 label {
@@ -260,7 +262,7 @@ form div.c0 div.c2 input {
   width: 200px;
   height: 38px;
   padding: 10px;
-  border: 1.5px solid #e8e8e8;
+  border: 1px solid #e8e8e8;
   border-radius: 5px;
   font-weight: 400;
   font-size: 16px;

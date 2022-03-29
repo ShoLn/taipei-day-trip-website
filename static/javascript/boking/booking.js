@@ -63,10 +63,10 @@ window.addEventListener("load", (e) => {
                         total_price += att.price;
                         let div_s1 = document.createElement("div");
                         div_s1.classList.add("s1");
-                        let div_u0 = document.querySelector("div.u0");
-                        div_u0.parentNode.insertBefore(div_s1, div_u0);
                         let hr = document.createElement("hr");
-                        div_u0.parentNode.insertBefore(hr, div_u0);
+                        let form = document.querySelector("form");
+                        form.insertBefore(hr, form.children[1]);
+                        form.insertBefore(div_s1, form.children[1]);
                         let img = document.createElement("img");
                         img.classList.add("attrac_img");
                         img.src = att.image;

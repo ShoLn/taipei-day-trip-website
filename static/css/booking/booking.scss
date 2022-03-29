@@ -107,18 +107,19 @@ form {
     }
     div.u0 {
         max-width: 980px;
-        height: 227px;
         margin: 0 110px;
         display: flex;
         flex-direction: column;
-        justify-content: space-between;
+        justify-content: flex-start;
         div.u1 {
             font-weight: 700;
             font-size: 19px;
             color: #666666;
+            margin-bottom: 24px;
         }
         div.u2 {
             display: flex;
+            margin-bottom: 15px;
             label {
                 display: flex;
                 align-items: center;
@@ -129,8 +130,8 @@ form {
             input {
                 width: 200px;
                 height: 38px;
-                padding: 10px;
-                border: 1.5px solid #e8e8e8;
+                padding: 0px 5px;
+                border: 1px solid #e8e8e8;
                 border-radius: 5px;
                 font-weight: 400;
                 font-size: 16px;
@@ -144,19 +145,20 @@ form {
         }
     }
     div.c0 {
-        max-width: 980;
-        height: 188px;
+        max-width: 980px;
         margin: 0 110px;
         display: flex;
         flex-direction: column;
-        justify-content: space-between;
+        justify-content: flex-start;
         div.c1 {
             font-weight: 700;
             font-size: 19px;
             color: #666666;
+            margin-bottom: 24px;
         }
         div.c2 {
             display: flex;
+            margin-bottom: 15px;
             label {
                 display: flex;
                 align-items: center;
@@ -168,7 +170,7 @@ form {
                 width: 200px;
                 height: 38px;
                 padding: 10px;
-                border: 1.5px solid #e8e8e8;
+                border: 1px solid #e8e8e8;
                 border-radius: 5px;
                 font-weight: 400;
                 font-size: 16px;

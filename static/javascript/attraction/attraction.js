@@ -105,7 +105,6 @@ async function api_booking(method, data) {
     return res_json;
 }
 //開始預定行程按鈕設定
-
 let start_booking = document.querySelector("form"); //開始預定行程表單
 start_booking.addEventListener("submit", (e) => {
     let div_signout = document.querySelector("div.signout"); //登出按鈕
@@ -131,11 +130,13 @@ start_booking.addEventListener("submit", (e) => {
             tour_cost: tour_cost,
             attrac_id: attrac_id,
         });
+        // 將資料用post api/booking 送到後端
         let res = api_booking("POST", data);
         res.then((res_json) => {
             if (res_json.ok) {
                 location.href = "/booking";
             } else {
+                //同一人同一天同個時段只能預約一次
                 let div_book_error0 = document.querySelector("div.book_error0");
                 div_book_error0.style.display = "flex";
                 document.querySelector("div.book_error3").innerText =
