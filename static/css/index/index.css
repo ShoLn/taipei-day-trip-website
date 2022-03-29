@@ -44,6 +44,7 @@ div.nav1 div.nav2 div.nav3 {
   font-weight: bolder;
   color: #448899;
   padding-left: 10px;
+  cursor: pointer;
 }
 
 div.nav1 div.nav2 div.nav4 {
