@@ -1,3 +1,6 @@
+// 台北一日遊
+let taipei = document.querySelector("div.nav3"); //台北一日遊div
+//登入註冊
 let login_signup = document.querySelectorAll("div.nav5")[1]; //最上方 登入/註冊 div
 // 登入頁面
 let pop_login = document.querySelector(".pop_outest"); //登入視窗
@@ -14,14 +17,38 @@ let signup_name = pop_signup.querySelector("input[name='name']"); //註冊名稱
 let signup_email = pop_signup.querySelector("input[name='email']"); //註冊信箱
 let signup_password = pop_signup.querySelector("input[name='password']"); // 註冊密碼
 let signup = pop_signup.querySelector("button"); // 註冊按鈕
+//預定行程按鈕
+let booking = document.querySelectorAll("div.nav5")[0];
+
+// 按台北一日遊字樣導到首頁
+taipei.addEventListener("click", (e) => {
+    location.href = "/";
+});
+
+// api/user async function
+async function api_user(method, data) {
+    let res = await fetch("/api/user", {
+        method: method,
+        headers: {
+            "Content-Type": "application/json",
+        },
+        body: data,
+    });
+    let res_json = await res.json();
+    return res_json;
+}
 
 // 每次載入頁時面使用get /api/user 判斷是否已經登入 及 delete /api/suer製作登出按鈕
 window.addEventListener("load", (e) => {
     //determine login
     let res_login = api_user("GET", null);
     res_login.then((res_json) => {
+        //若沒登入
         if (res_json.null) {
-            return;
+            // 預定行程按鈕
+            booking.addEventListener("click", (e) => {
+                pop_login.style.display = "flex";
+            });
         } else {
             let login_signup = document.querySelectorAll("div.nav5")[1];
             login_signup.style.display = "none";
@@ -38,6 +65,9 @@ window.addEventListener("load", (e) => {
                         location.href = window.location.href;
                     }
                 });
+            });
+            booking.addEventListener("click", (e) => {
+                location.href = "/booking";
             });
         }
     });
@@ -80,19 +110,6 @@ have_account.addEventListener("click", (e) => {
     pop_signup.style.display = "none";
     pop_login.style.display = "flex";
 });
-
-// api/user async function
-async function api_user(method, data) {
-    let res = await fetch("/api/user", {
-        method: method,
-        headers: {
-            "Content-Type": "application/json",
-        },
-        body: data,
-    });
-    let res_json = await res.json();
-    return res_json;
-}
 
 // 註冊按鈕click事件 api POST
 signup.addEventListener("click", (e) => {

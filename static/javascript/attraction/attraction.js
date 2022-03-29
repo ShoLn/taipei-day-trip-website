@@ -92,4 +92,61 @@ async function load_attrac_id() {
     trans.innerText = data.transport;
 }
 
+//booking api
+async function api_booking(method, data) {
+    let res = await fetch("/api/booking", {
+        method: method,
+        headers: {
+            "Content-Type": "application/json",
+        },
+        body: data,
+    });
+    res_json = await res.json();
+    return res_json;
+}
+//開始預定行程按鈕設定
+let start_booking = document.querySelector("form"); //開始預定行程表單
+start_booking.addEventListener("submit", (e) => {
+    let div_signout = document.querySelector("div.signout"); //登出按鈕
+    //若沒登入
+    if (!div_signout) {
+        e.preventDefault();
+        let pop_login = document.querySelector(".pop_outest"); //登入視窗
+        pop_login.style.display = "flex";
+    } else {
+        //若有登入
+        e.preventDefault();
+        let tour_date = document.querySelector("input.date").value; //日期
+        let tour_time = document.querySelector(
+            'input[name="time"]:checked'
+        ).value; //時間
+        let tour_cost = document
+            .querySelector("div.money1")
+            .innerText.slice(4, 8); //費用
 
+        data = JSON.stringify({
+            tour_date: tour_date,
+            tour_time: tour_time,
+            tour_cost: tour_cost,
+            attrac_id: attrac_id,
+        });
+        // 將資料用post api/booking 送到後端
+        let res = api_booking("POST", data);
+        res.then((res_json) => {
+            if (res_json.ok) {
+                location.href = "/booking";
+            } else {
+                //同一人同一天同個時段只能預約一次
+                let div_book_error0 = document.querySelector("div.book_error0");
+                div_book_error0.style.display = "flex";
+                document.querySelector("div.book_error3").innerText =
+                    res_json.message;
+                let img_close = document.querySelector("div.book_error1 img");
+                img_close.addEventListener("click", (e) => {
+                    document.querySelector("div.book_error3").innerText = "";
+                    div_book_error0.style.display = "none";
+                });
+            }
+        });
+    }
+});

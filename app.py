@@ -1,3 +1,4 @@
+from crypt import methods
 from flask import *
 from mysql.connector import pooling, Error
 import jwt
@@ -184,9 +185,7 @@ def user():
             cursor = cnt_pool_obj.cursor(dictionary=True, buffered=True)
             sql = 'INSERT INTO `taipei_trip_member`(`name`, `email`, `password`) VALUES (%s,%s,%s); '
             val = (name, email, password)
-            print(1111)
             cursor.execute(sql, val)
-            print(2222)
             cnt_pool_obj.commit()
             return jsonify({'ok': True}), 200
         except Error as e:
@@ -198,9 +197,9 @@ def user():
             return jsonify({'error': True,
                             'message': "伺服器內部錯誤"}), 500
         finally:
-                cnt_pool_obj.rollback()
-                cursor.close()
-                cnt_pool_obj.close()
+            cnt_pool_obj.rollback()
+            cursor.close()
+            cnt_pool_obj.close()
     # PATCH方法 登入
     elif request.method == 'PATCH':
         email = request.json.get('email', None)
@@ -229,9 +228,9 @@ def user():
             return jsonify({"error": True,
                             "message": "伺服器內部錯誤"}), 500
         finally:
-                cnt_pool_obj.rollback()
-                cursor.close()
-                cnt_pool_obj.close()
+            cnt_pool_obj.rollback()
+            cursor.close()
+            cnt_pool_obj.close()
     # DELETE方法 登出
     elif request.method == "DELETE":
         res_data = {"ok": True}
@@ -239,5 +238,102 @@ def user():
         res.delete_cookie('JWT')
         return res
 
+
+#################################################################
+########################### Api 預定行程 #########################
+#################################################################
+@app.route('/api/booking', methods=["GET", "POST", "DELETE"])
+def api_booking():
+    token = request.cookies.get('JWT')
+    user_data = jwt.decode(
+        token, app.config['SECRET_KEY'], algorithms=["HS256"])
+    user_id = user_data.get('id')
+    user_name = user_data.get('name')
+    user_email = user_data.get('email')
+    # GET方法
+    if request.method == "GET":
+        try:
+            cnt_pool_obj = pool_object.get_connection()
+            cursor = cnt_pool_obj.cursor(dictionary=True, buffered=True)
+            sql = " SELECT `booking`.`id` AS `booking_id`, `booking`.`attrac_id`, `taipei_trip`.`name` AS `attrac_name`, `taipei_trip`.`address`, `taipei_trip`.`images`,`booking`.`tour_date`, `booking`.`tour_time`, `booking`.`tour_cost` FROM `booking` JOIN `taipei_trip_member` ON `booking`.`user_id` = `taipei_trip_member`.id JOIN `taipei_trip` ON `booking`.`attrac_id` = `taipei_trip`.`id` WHERE `booking`.`user_id` = %s;  "
+            val = (user_id,)
+            cursor.execute(sql, val)
+            data = cursor.fetchall()
+            res_data = {
+                "data": {
+                    "user": {
+                        "id": user_id,
+                        "name": user_name,
+                        "email": user_email
+                    },
+                    "attrac": []
+                }
+            }
+            if len(data):
+                for dict in data:
+                    res_data["data"]["attrac"].append({
+                        "booking_id":dict["booking_id"],
+                        "attrac_id": dict["attrac_id"],
+                        "name": dict["attrac_name"],
+                        "image": dict["images"].split()[0],
+                        "address": dict["address"],
+                        "date": dict["tour_date"],
+                        "time": dict["tour_time"],
+                        "price": dict["tour_cost"]
+                    })
+                return jsonify(res_data)
+            else:
+                return jsonify(res_data)
+        except:
+            return jsonify({"error": True,
+                            "message": "伺服器內部錯誤"}), 500
+        finally:
+            cnt_pool_obj.rollback()
+            cursor.close()
+            cnt_pool_obj.close()
+    # POST方法
+    if request.method == "POST":
+        attrac_id = request.json.get('attrac_id')
+        tour_date = request.json.get('tour_date')
+        tour_time = request.json.get('tour_time')
+        tour_cost = request.json.get('tour_cost')
+
+        try:
+            cnt_pool_obj = pool_object.get_connection()
+            cursor = cnt_pool_obj.cursor(dictionary=True, buffered=True)
+            sql = ' INSERT INTO `booking`(`user_id`, `attrac_id`, `tour_date`, `tour_time`, `tour_cost`) VALUE(%s, %s, %s, %s, %s); '
+            val = (user_id, attrac_id, tour_date, tour_time, tour_cost)
+            cursor.execute(sql, val)
+            cnt_pool_obj.commit()
+            return jsonify({'ok': True}), 200
+        except Error as e:
+            if e.errno == 1062:
+                return jsonify({"error": True,
+                                "message": "同一天同個時段只能預定一個行程"}), 412
+        except:
+            return jsonify({"error": True,
+                            "message": "伺服器內部錯誤"}), 500
+        finally:
+            cnt_pool_obj.rollback()
+            cursor.close()
+            cnt_pool_obj.close()
+    #DELETE 方法
+    if request.method == "DELETE":
+        booking_id = request.json.get('booking_id')
+        try:
+            cnt_pool_obj = pool_object.get_connection()
+            cursor = cnt_pool_obj.cursor(dictionary=True, buffered=True)
+            sql = ' DELETE FROM `booking` WHERE `id` = %s '
+            val = (booking_id,)
+            cursor.execute(sql, val)
+            cnt_pool_obj.commit()
+            return jsonify({'ok': True}), 200
+        except:
+            return jsonify({"error": True,
+                            "message": "伺服器內部錯誤"}), 500
+        finally:
+            cnt_pool_obj.rollback()
+            cursor.close()
+            cnt_pool_obj.close()
 
 app.run(host='0.0.0.0', port=3000, debug=True)
