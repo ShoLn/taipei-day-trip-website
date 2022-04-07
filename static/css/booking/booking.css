@@ -239,14 +239,17 @@ form div.c0 div.c1 {
   margin-bottom: 24px;
 }
 
-form div.c0 div.c2 {
+form div.c0 div.form-group {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
   margin-bottom: 15px;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
 }
 
-form div.c0 div.c2 label {
+form div.c0 div.form-group label {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -258,9 +261,9 @@ form div.c0 div.c2 label {
   color: #666666;
 }
 
-form div.c0 div.c2 input {
+form div.c0 div.form-group div.tpfield {
   width: 200px;
-  height: 38px;
+  height: 50px;
   padding: 10px;
   border: 1px solid #e8e8e8;
   border-radius: 5px;
@@ -268,6 +271,12 @@ form div.c0 div.c2 input {
   font-size: 16px;
   background-color: #ffffff;
   color: #000000;
+}
+
+form div.c0 div.form-group span {
+  margin-left: 15px;
+  color: #448899;
+  font-size: 16px;
 }
 
 form div.confirm0 {

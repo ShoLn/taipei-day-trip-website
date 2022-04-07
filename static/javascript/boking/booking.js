@@ -1,20 +1,3 @@
-//信用卡格式設定
-let credit_number = document.querySelectorAll("div.c2 input")[0];
-credit_number.addEventListener("keypress", (e) => {
-    if (credit_number.value.length < 19) {
-        credit_number.value = credit_number.value
-            .replace(/\W/gi, "")
-            .replace(/(.{4})/g, "$1 ");
-        return true;
-    } else {
-        return false;
-    }
-});
-credit_number.addEventListener("keyup", (e) => {
-    e.target.value = e.target.value.replace(/[^\d ]/g, "");
-    return false;
-});
-
 //檢查使用者登入狀態
 // api/user async function
 async function api_user(method, data) {
@@ -42,6 +25,7 @@ async function api_booking(method, data) {
     return res_json;
 }
 
+// 抓取預定行程資料並創建html
 window.addEventListener("load", (e) => {
     let res = api_user("GET", null);
     res.then((res_json) => {
@@ -183,3 +167,5 @@ window.addEventListener("load", (e) => {
         }
     });
 });
+
+
