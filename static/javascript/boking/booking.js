@@ -1,20 +1,3 @@
-//信用卡格式設定
-let credit_number = document.querySelectorAll("div.c2 input")[0];
-credit_number.addEventListener("keypress", (e) => {
-    if (credit_number.value.length < 19) {
-        credit_number.value = credit_number.value
-            .replace(/\W/gi, "")
-            .replace(/(.{4})/g, "$1 ");
-        return true;
-    } else {
-        return false;
-    }
-});
-credit_number.addEventListener("keyup", (e) => {
-    e.target.value = e.target.value.replace(/[^\d ]/g, "");
-    return false;
-});
-
 //檢查使用者登入狀態
 // api/user async function
 async function api_user(method, data) {
@@ -42,6 +25,7 @@ async function api_booking(method, data) {
     return res_json;
 }
 
+// 抓取預定行程資料並創建html
 window.addEventListener("load", (e) => {
     let res = api_user("GET", null);
     res.then((res_json) => {
@@ -60,6 +44,7 @@ window.addEventListener("load", (e) => {
                     let div_s0 = document.querySelector("div.s0");
                     div_s0.innerText = `您好，${res_json.data.user.name}，待預定的行程如下：`;
                     res_json.data.attrac.forEach((att) => {
+                        console.log(att);
                         total_price += att.price;
                         let div_s1 = document.createElement("div");
                         div_s1.classList.add("s1");
@@ -132,10 +117,12 @@ window.addEventListener("load", (e) => {
                         // 註冊清除行程資料 按鈕事件
                         icon_delete.addEventListener("click", (e) => {
                             //刪除行程資料庫資料
-                            delete_data = JSON.stringify({
-                                booking_id: att.booking_id,
+                            fetch(`/api/booking/${att.booking_id}`, {
+                                method: "DELETE",
+                                headers: {
+                                    "Content-Type": "application/json",
+                                },
                             });
-                            api_booking("DELETE", delete_data);
                             //刪除html畫面
                             icon_delete.parentElement.nextElementSibling.remove();
                             icon_delete.parentElement.remove();

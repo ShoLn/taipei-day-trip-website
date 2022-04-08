@@ -55,15 +55,22 @@
                 <div class="u1">您的聯絡資訊</div>
                 <div class="u2">
                     <label for="name">聯絡姓名：</label>
-                    <input type="text" id="name" />
+                    <input type="text" id="name" required />
                 </div>
                 <div class="u2">
                     <label for="email">聯絡信箱：</label>
-                    <input type="email" id="email" />
+                    <input type="email" id="email" required />
                 </div>
                 <div class="u2">
                     <label for="phone">手機號碼：</label>
-                    <input type="text" id="phone" pattern="[0-9]+" />
+                    <input
+                        type="text"
+                        id="phone"
+                        pattern="[0-9]+"
+                        minlength="10"
+                        maxlength="10"
+                        required
+                    />
                 </div>
                 <div class="u3">
                     請保持手機暢通，準時到達，導覽人員將用手機與您聯繫，務必留下正確的聯絡方式。
@@ -72,35 +79,32 @@
             <hr />
             <div class="c0">
                 <div class="c1">信用卡付款資訊</div>
-                <div class="c2">
-                    <label for="c_number">卡片號碼：</label>
-                    <input
-                        type="text"
-                        id="c_number"
-                        pattern="[0-9]+"
-                        maxlength="19"
-                        placeholder="**** **** **** ****"
-                    />
+                <div class="form-group card-number-group">
+                    <label for="card-number" class="control-label"
+                        >卡片號碼：</label
+                    >
+                    <div class="tpfield" id="card-number"></div>
+                    <span class="cardtype number"></span>
                 </div>
-                <div class="c2">
-                    <label for="c_expire">過期時間：</label>
-                    <input type="month" id="c_expire" />
+                <div class="form-group expiration-date-group">
+                    <label for="expiration-date" class="control-label"
+                        >過期時間：</label
+                    >
+                    <div class="tpfield" id="card-expiration-date"></div>
+                    <span class="cardtype expiry"></span>
                 </div>
-                <div class="c2">
-                    <label for="c_verify">驗證號碼：</label>
-                    <input
-                        type="text"
-                        id="c_verify"
-                        pattern="[0-9]+"
-                        maxlength="3"
-                        placeholder="CVV"
-                    />
+                <div class="form-group ccv-group">
+                    <label for="ccv" class="control-label">驗證號碼：</label>
+                    <div class="tpfield" id="card-ccv"></div>
+                    <span class="cardtype ccv"></span>
                 </div>
             </div>
             <hr />
             <div class="confirm0">
                 <div class="confirm1">總價：新台幣 2000 元</div>
-                <button type="submit">確認訂購並付款</button>
+                <button button type="submit" class="tapfield btn btn-default">
+                    確認訂購並付款
+                </button>
             </div>
         </form>
         <!-- no schedule but login -->
@@ -173,4 +177,6 @@
     </body>
     <script src="/static/javascript/boking/booking.js"></script>
     <script src="/static/javascript/index/index_login_signup.js"></script>
+    <script src="https://js.tappaysdk.com/tpdirect/v5.9.0"></script>
+    <script src="/static/javascript/boking/tappay.js"></script>
 </html>
