@@ -454,7 +454,7 @@ def api_orders():
             cursor.close()
             cnt_pool_obj.close()
 
-    # 若付款失敗維持尚未付款，回傳訂單編號
+    # 若付款失敗
     else:
         cnt_pool_obj.rollback()
         cursor.close()
