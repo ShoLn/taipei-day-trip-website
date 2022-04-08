@@ -1,4 +1,5 @@
 from crypt import methods
+from unicodedata import name
 from flask import *
 from mysql.connector import pooling, Error
 import jwt
@@ -319,24 +320,28 @@ def api_booking():
         finally:
             cursor.close()
             cnt_pool_obj.close()
-    # DELETE 方法
-    if request.method == "DELETE":
-        booking_id = request.json.get('booking_id')
-        try:
-            cnt_pool_obj = pool_object.get_connection()
-            cursor = cnt_pool_obj.cursor(dictionary=True, buffered=True)
-            sql = ' DELETE FROM `booking` WHERE `id` = %s '
-            val = (booking_id,)
-            cursor.execute(sql, val)
-            cnt_pool_obj.commit()
-            return jsonify({'ok': True}), 200
-        except:
-            return jsonify({"error": True,
-                            "message": "伺服器內部錯誤"}), 500
-        finally:
-            cnt_pool_obj.rollback()
-            cursor.close()
-            cnt_pool_obj.close()
+
+# API BOOKING DELETE 方法
+
+
+@app.route('/api/booking/<booking_id>', methods=["DELETE"])
+def api_booking_delete(booking_id):
+    print(booking_id)
+    try:
+        cnt_pool_obj = pool_object.get_connection()
+        cursor = cnt_pool_obj.cursor(dictionary=True, buffered=True)
+        sql = ' DELETE FROM `booking` WHERE `id` = %s '
+        val = (booking_id,)
+        cursor.execute(sql, val)
+        cnt_pool_obj.commit()
+        return jsonify({'ok': True}), 200
+    except:
+        return jsonify({"error": True,
+                        "message": "伺服器內部錯誤"}), 500
+    finally:
+        cnt_pool_obj.rollback()
+        cursor.close()
+        cnt_pool_obj.close()
 
 #################################################################
 ########################### Api 訂單付款 #########################
@@ -353,107 +358,108 @@ def api_orders():
     all_booking_id = request.json["order"]["all_booking_id"]
     total_price = request.json["order"]["total_price"]
     prime = request.json["prime"]
-
-    # 建立訂單在資料庫
-
-    try:
-        cnt_pool_obj = pool_object.get_connection()
-        cursor = cnt_pool_obj.cursor(dictionary=True, buffered=True)
-        sql = ' INSERT INTO `orders`(`user_id`, `contact_name`, `contact_email`, `contact_phone`, `all_booking_id`, `total_price`) VALUE (%s,%s,%s,%s,%s,%s); '
-        val = (user_id, contact_name, contact_email,
-               contact_phone, all_booking_id, total_price)
+    attrac_id = []
+    tour_date = []
+    tour_time = []
+    tour_cost = []
+    print(all_booking_id.split(','))
+    cnt_pool_obj = pool_object.get_connection()
+    cursor = cnt_pool_obj.cursor(dictionary=True, buffered=True)
+    for booking_id in all_booking_id.split(','):
+        sql = 'SELECT * FROM `booking` WHERE `id` = %s;'
+        val = (booking_id,)
         cursor.execute(sql, val)
-        cnt_pool_obj.commit()
-    except Error as e:
-        print("重複的資料")
-    except:
-        return jsonify({"error": True,
-                        "message": "建立訂單失敗"}), 500
+        book_data = cursor.fetchone()
+        attrac_id.append(book_data["attrac_id"])
+        tour_date.append(book_data["tour_date"])
+        tour_time.append(book_data["tour_time"])
+        tour_cost.append(book_data["tour_cost"])
+    print("`----------------------------------------")
+    attrac_id = " ".join(str(e) for e in attrac_id)
+    tour_date = " ".join(str(e) for e in tour_date)
+    tour_time = " ".join(str(e) for e in tour_time)
+    tour_cost = " ".join(str(e) for e in tour_cost)
 
-    # 打api到tappay 後端前檢查是否已經付過款，沒付過再打
+    # 打api到tappay 後端
 
-    sql = ' SELECT `payment`, `order_id` FROM `orders` WHERE `all_booking_id`=%s AND `user_id`=%s ; '
-    val = (all_booking_id, user_id)
-    cursor.execute(sql, val)
-    order_data = cursor.fetchone()
-    payment = order_data['payment']
-    order_id = order_data['order_id']
-    if payment == 0:
-        print('已經付款過了')
-        return jsonify({
-            "data": {
-                "number": order_id,
-                "payment": {
-                    "status": 0,
-                    "message": "付款成功"
-                }
-            }
-        }), 200
-    else:
-        url = "https://sandbox.tappaysdk.com/tpc/payment/pay-by-prime"
-        header = {
-            "Content-Type": "application/json",
-            "x-api-key": "partner_oM6ZkSqDG3fZ0u3aPyqOyoPEXwfK7j8jBX5YK3TfU0bcqHhd3YDkqUlm"
-        }
-        data = {
-            "prime": prime,
-            "partner_key": "partner_oM6ZkSqDG3fZ0u3aPyqOyoPEXwfK7j8jBX5YK3TfU0bcqHhd3YDkqUlm",
-            "merchant_id": "ShoLn_CTBC",
-            "details": "TapPay Test",
-            "amount": total_price,
-            "cardholder": {
-                "phone_number": str(contact_phone),
-                "name": contact_name,
-                "email": contact_email,
-                "zip_code": "",
-                            "address": "",
-                            "national_id": ""
-            },
-            "remember": True
-        }
-        res_tp = py_req.post(url, headers=header, json=data)
-        res_tp_status = res_tp.json()["status"]
+    url = "https://sandbox.tappaysdk.com/tpc/payment/pay-by-prime"
+    header = {
+        "Content-Type": "application/json",
+        "x-api-key": "partner_oM6ZkSqDG3fZ0u3aPyqOyoPEXwfK7j8jBX5YK3TfU0bcqHhd3YDkqUlm"
+    }
+    data = {
+        "prime": prime,
+        "partner_key": "partner_oM6ZkSqDG3fZ0u3aPyqOyoPEXwfK7j8jBX5YK3TfU0bcqHhd3YDkqUlm",
+        "merchant_id": "ShoLn_CTBC",
+        "details": "TapPay Test",
+        "amount": total_price,
+        "cardholder": {
+            "phone_number": str(contact_phone),
+            "name": contact_name,
+            "email": contact_email,
+            "zip_code": "",
+                        "address": "",
+                        "national_id": ""
+        },
+        "remember": True
+    }
+    res_tp = py_req.post(url, headers=header, json=data)
+    res_tp_status = res_tp.json()["status"]
 
-        # 若付款成功
-        if res_tp_status == 0:
-            try:
-                sql = ' UPDATE `orders` SET `payment` = 0 WHERE `all_booking_id` = %s AND `user_id`=%s; '
-                val = (all_booking_id, user_id)
+    # 若付款成功
+    if res_tp_status == 0:
+        try:
+            sql = """
+                INSERT INTO `orders`
+                (`user_id`, `contact_name`, `contact_email`, 
+                `contact_phone`, `total_price`, `attrac_id`,
+                `tour_date`, `tour_time`, `tour_cost`,`payment`) 
+                VALUE (%s,%s,%s,%s,%s,%s,%s,%s,%s,%s);
+               """
+            val = (user_id, contact_name, contact_email,
+                   contact_phone, total_price, attrac_id,
+                   tour_date, tour_time, tour_cost, 0)
+            cursor.execute(sql, val)
+            cnt_pool_obj.commit()
+            for booking_id in all_booking_id.split(','):
+                sql = 'DELETE FROM `booking` WHERE `id` = %s;'
+                val = (booking_id,)
                 cursor.execute(sql, val)
                 cnt_pool_obj.commit()
-                return jsonify({
-                    "data": {
-                        "number": order_id,
-                        "payment": {
-                            "status": 0,
-                            "message": "付款成功"
-                        }
-                    }
-                }), 200
-            except:
-                return jsonify({"error": True, "message": "已扣款，但更改訂單資料庫付款狀況為已付款失敗"}), 500
-            finally:
-                cursor.close()
-                cnt_pool_obj.close()
 
-        # 若付款失敗維持尚未付款，回傳訂單編號
-        else:
-            try:
-                return jsonify({
-                    "data": {
-                        "number": order_id,
-                        "payment": {
-                            "status": 1,
-                            "message": "已建立訂單，但信用卡扣款失敗"
-                        }
+            sql = """
+                    SELECT `order_id` FROM `orders` WHERE
+                    `attrac_id` = %s AND
+                    `tour_date` = %s AND
+                    `tour_time` = %s AND
+                    `user_id` = %s;    
+                  """
+            val = (attrac_id, tour_date, tour_time, user_id)
+
+            cursor.execute(sql, val)
+            order_id = cursor.fetchone()["order_id"]
+            return jsonify({
+                "data": {
+                    "number": order_id,
+                    "payment": {
+                        "status": 0,
+                        "message": "付款成功"
                     }
-                }), 201
-            except:
-                return jsonify({"error": True,
-                                "message": "伺服器內部錯誤"}), 500
-            finally:
-                cursor.close()
-                cnt_pool_obj.close()
+                }
+            }), 200
+        except:
+            cnt_pool_obj.rollback()
+            return jsonify({"error": True, "message": "伺服器錯誤"}), 500
+        finally:
+            cursor.close()
+            cnt_pool_obj.close()
+
+    # 若付款失敗維持尚未付款，回傳訂單編號
+    else:
+        cnt_pool_obj.rollback()
+        cursor.close()
+        cnt_pool_obj.close()
+        return jsonify({"error": True, "message": "付款失敗"}), 500
 
 
 @app.route('/api/order/<orderNumber>', methods=["GET"])
@@ -467,38 +473,37 @@ def api_order(orderNumber):
         val = (order_id,)
         cursor.execute(sql, val)
         order_dic = cursor.fetchone()
-        sql = "SELECT * FROM `booking` WHERE `user_id`=%s; "
-        val = (order_dic["user_id"],)
-        cursor.execute(sql, val)
-        booking_list = cursor.fetchall()
         attraction = []
-        for booking_dict in booking_list:
-            sql = " SELECT * FROM `taipei_trip` WHERE `id` = %s; "
-            val = (booking_dict["attrac_id"],)
-            cursor.execute(sql, val)
-            attrac_dict = cursor.fetchone()
-            book_obj = {
-                "id": booking_dict["attrac_id"],
-                "name": attrac_dict["name"],
-                "address": attrac_dict["address"],
-                "image": attrac_dict["images"].split()[0],
-                "date": booking_dict["tour_date"],
-                "time": booking_dict["tour_time"]
-            }
-            attraction.append(book_obj)
+        for i in range(len(order_dic["attrac_id"].split())):
+            sql = ' SELECT `name`,`address`,`images` FROM `taipei_trip` WHERE `id`=%s'
+            val = (order_dic["attrac_id"].split()[i],)
+            cursor.execute(sql,val)
+            taipei_trip_data = cursor.fetchone()
+            name = taipei_trip_data["name"]
+            address = taipei_trip_data["address"]
+            image = taipei_trip_data["images"].split()[0]
+            order_obj = {
+                    "attrac_id": order_dic["attrac_id"].split()[i],
+                    "name": name,
+                    "address": address,
+                    "image": image,
+                    "date": order_dic["tour_date"].split()[i],
+                    "time": order_dic["tour_time"].split()[i]
+                }
+            attraction.append(order_obj)
         return jsonify({
-            "data": {
-                "number": order_id,
-                "price": order_dic["total_price"],
-                "attraction": attraction,
-                "contact": {
-                    "name": order_dic["contact_name"],
-                    "email": order_dic["contact_email"],
-                    "phone": order_dic["contact_phone"]
-                },
-                "status": order_dic["payment"]
-            }
-        }), 200
+                "data": {
+                    "number": order_id,
+                    "price": order_dic["total_price"],
+                    "attraction": attraction,
+                    "contact": {
+                        "name": order_dic["contact_name"],
+                        "email": order_dic["contact_email"],
+                        "phone": order_dic["contact_phone"]
+                    },
+                    "status": order_dic["payment"]
+                }
+            }), 200
     except:
         return jsonify({"error": True,
                         "message": "伺服器內部錯誤"}), 500
