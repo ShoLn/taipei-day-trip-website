@@ -7,11 +7,11 @@ let page = 0;
 let keyword = "";
 
 async function load_trip(pg, kw) {
-    loading_gif.style.display = "block";
     if (pg === null) {
         delay = false;
         return;
     }
+    loading_gif.style.display = "block";
     let res = await fetch(`/api/attractions?page=${pg}&keyword=${kw}`);
     let res_json = await res.json();
     let load_id = [];

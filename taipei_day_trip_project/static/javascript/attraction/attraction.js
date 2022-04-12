@@ -1,8 +1,15 @@
 let attrac_id = window.location.pathname.split("/")[2]; //取得景點編號
 let img_container = document.querySelector("div.c_img_container"); // 圖片容器div
 let dot_container = document.querySelector("div.c_dot_container"); // 圓點容器
+let loading_gif = document.querySelector("div.loading"); // loading gif div
 
 load_attrac_id();
+
+window.addEventListener("load", (e) => {
+    load_attrac_id();
+    loading_gif.style.display = "none";
+});
+
 async function load_attrac_id() {
     let res = await fetch(`/api/attraction/${attrac_id}`);
     let res_json = await res.json();
