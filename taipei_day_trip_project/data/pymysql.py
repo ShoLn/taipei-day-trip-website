@@ -1,6 +1,7 @@
 import json
 import mysql.connector
 
+# 透過python將 景點json資料存入mysql
 with open('taipei-attractions.json') as f:
     alldata = json.load(f)
     data = alldata['result']['results']

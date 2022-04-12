@@ -168,9 +168,16 @@ div.p0 {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
   -webkit-box-pack: center;
       -ms-flex-pack: center;
           justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
 }
 
 div.p0 div.p1 {
@@ -241,6 +248,13 @@ div.p0 div.p1 div.p2 div.p4 div.p5 {
 div.p0 div.p1 div.p2 div.p4 div.p6 {
   font-size: 0.8rem;
   padding-right: 10px;
+}
+
+div.p0 div.loading {
+  background: url("/static/image/icon/loading.gif") no-repeat center center;
+  height: 100px;
+  width: 100px;
+  display: none;
 }
 
 div.l1 {

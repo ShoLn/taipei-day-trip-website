@@ -110,7 +110,9 @@ div.s1 {
 //picture
 div.p0 {
     display: flex;
+    flex-direction: column;
     justify-content: center;
+    align-items: center;
     div.p1 {
         width: 1200px;
         display: flex;
@@ -156,6 +158,13 @@ div.p0 {
                 }
             }
         }
+    }
+    div.loading {
+        background: url("/static/image/icon/loading.gif") no-repeat center
+            center;
+        height: 100px;
+        width: 100px;
+        display: none;
     }
 }
 

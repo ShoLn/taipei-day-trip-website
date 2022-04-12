@@ -1,44 +1,13 @@
 let div_p1 = document.querySelector("div.p1");
 let delay = false; // sovle internet delay problem
-
-//create generate html pictre function
-//用這個function 在load trip function 裡跑會有bug 要再理解原因
-function generate_pic(number) {
-    for (let i = 0; i < number; i++) {
-        let div_p2 = document.createElement("div");
-        div_p2.classList.add("p2");
-        let img = document.createElement("img");
-        img.classList.add("pi");
-        let div_p3 = document.createElement("div");
-        div_p3.classList.add("p3");
-        let div_p4 = document.createElement("div");
-        div_p4.classList.add("p4");
-        let div_p5 = document.createElement("div");
-        div_p5.classList.add("p5");
-        let div_p6 = document.createElement("div");
-        div_p6.classList.add("p6");
-        div_p1.appendChild(div_p2);
-        div_p2.appendChild(img);
-        div_p2.appendChild(div_p3);
-        div_p2.appendChild(div_p4);
-        div_p4.appendChild(div_p5);
-        div_p4.appendChild(div_p6);
-        img.src = load_image[i];
-        div_p3.innerText = load_name[i];
-        div_p5.innerText = load_mrt[i];
-        div_p6.innerText = load_category[i];
-        delay = false;
-        div_p2.addEventListener("click", (e) => {
-            location.href = `/attraction/${load_id[i]}`;
-        });
-    }
-}
+let loading_gif = document.querySelector("div.loading");
 
 //create fetch api function :/api/attractions
 let page = 0;
 let keyword = "";
 
 async function load_trip(pg, kw) {
+    loading_gif.style.display = "block";
     if (pg === null) {
         delay = false;
         return;
@@ -100,6 +69,7 @@ async function load_trip(pg, kw) {
     if (window.innerHeight == document.documentElement.scrollHeight) {
         load_trip(page, keyword);
     }
+    loading_gif.style.display = "none";
 }
 
 /////////////////////////////////////////////
