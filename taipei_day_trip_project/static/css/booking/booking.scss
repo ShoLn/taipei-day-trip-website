@@ -7,6 +7,19 @@
     font-family: "Noto Sans TC";
 }
 
+// loading gif
+div.loading {
+    background: white url("/static/image/icon/loading.gif");
+    background-repeat: no-repeat;
+    background-position: 50% 40%;
+    height: 100vh;
+    width: 100vw;
+    display: block;
+    position: fixed;
+    top: 62px;
+    z-index: 999;
+}
+
 // nav
 div.nav1 {
     display: flex;
@@ -39,10 +52,26 @@ div.nav1 {
                 font-size: 16px;
                 font-weight: 400px;
                 color: #666666;
-                margin-right: 20px;
+                margin-right: 25px;
                 height: 62px;
                 align-items: center;
                 cursor: pointer;
+                position: relative;
+                div.nav_book_num {
+                    display: none;
+                    justify-content: center;
+                    align-items: center;
+                    position: absolute;
+                    background-color: #66aabb;
+                    border-radius: 50%;
+                    height: 22px;
+                    width: 22px;
+                    top: 9px;
+                    right: 0;
+                    transform: translateX(65%);
+                    opacity: 80%;
+                    color: rgb(255, 255, 255);
+                }
             }
         }
     }

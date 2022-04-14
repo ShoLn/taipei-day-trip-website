@@ -5,12 +5,17 @@ from taipei_day_trip_project.view.attraction import attraction_blueprint
 from taipei_day_trip_project.view.booking import booking_blueprint
 from taipei_day_trip_project.view.index import index_blueprint
 from taipei_day_trip_project.view.thankyou import thankyou_blueprint
+from dotenv import load_dotenv
+import os
+
+load_dotenv()
 
 app = Flask(__name__)
 app.config["JSON_AS_ASCII"] = False
 app.config["TEMPLATES_AUTO_RELOAD"] = True
 app.config['JSON_SORT_KEYS'] = False
-app.config['SECRET_KEY'] = 'wehelp'
+app.config['SECRET_KEY'] = os.getenv("flask_secret_key")
+
 
 app.register_blueprint(order_blueprint)
 app.register_blueprint(user_blueprint)

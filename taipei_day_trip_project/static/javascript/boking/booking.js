@@ -1,3 +1,5 @@
+let loading_gif = document.querySelector("div.loading"); // loading gif div
+
 //檢查使用者登入狀態
 // api/user async function
 async function api_user(method, data) {
@@ -131,6 +133,13 @@ window.addEventListener("load", (e) => {
                             let div_total_price =
                                 document.querySelector("div.confirm1");
                             div_total_price.innerText = `總價：新台幣 ${total_price} 元`;
+                            //預定行數按鈕顯示數目減少1
+                            let book_num =
+                                document.querySelector("div.nav_book_num");
+                            book_num.innerText -= 1;
+                            if (book_num.innerText == 0) {
+                                book_num.style.display = "none";
+                            }
                             //若刪到都沒行程資料顯示都沒行程資料
                             if (!document.querySelector("div.s1")) {
                                 let form = document.querySelector("form");
@@ -169,4 +178,5 @@ window.addEventListener("load", (e) => {
             });
         }
     });
+    loading_gif.style.display = "none";
 });

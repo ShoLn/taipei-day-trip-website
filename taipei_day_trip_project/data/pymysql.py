@@ -1,5 +1,9 @@
 import json
 import mysql.connector
+from dotenv import load_dotenv
+import os
+
+load_dotenv()
 
 # 透過python將 景點json資料存入mysql
 with open('taipei-attractions.json') as f:
@@ -42,7 +46,7 @@ db = mysql.connector.connect(
     host="localhost",
     port="3306",
     user="root",
-    password="password",
+    password=os.getenv("mysql_password"),
     database="website",
     auth_plugin="mysql_native_password"
 )

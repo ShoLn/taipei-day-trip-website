@@ -79,7 +79,7 @@ div.nav1 div.nav2 div.nav4 div.nav5 {
   font-size: 0.8rem;
   font-weight: 400px;
   color: #666666;
-  margin-right: 0.5rem;
+  margin-right: 25px;
   cursor: pointer;
   height: 62px;
   display: -webkit-box;
@@ -88,6 +88,28 @@ div.nav1 div.nav2 div.nav4 div.nav5 {
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
+  position: relative;
+}
+
+div.nav1 div.nav2 div.nav4 div.nav5 div.nav_book_num {
+  display: none;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  position: absolute;
+  background-color: #66aabb;
+  border-radius: 50%;
+  height: 22px;
+  width: 22px;
+  top: 9px;
+  right: 0;
+  -webkit-transform: translateX(65%);
+          transform: translateX(65%);
+  opacity: 80%;
+  color: white;
 }
 
 div.c_outermost {

@@ -9,6 +9,7 @@
     border: 0;
 }
 
+// loading gif
 div.loading {
     background: white url("/static/image/icon/loading.gif");
     background-repeat: no-repeat;
@@ -53,11 +54,27 @@ div.nav1 {
                 font-size: 0.8rem;
                 font-weight: 400px;
                 color: #666666;
-                margin-right: 0.5rem;
+                margin-right: 25px;
                 cursor: pointer;
                 height: 62px;
                 display: flex;
                 align-items: center;
+                position: relative;
+                div.nav_book_num {
+                    display: none;
+                    justify-content: center;
+                    align-items: center;
+                    position: absolute;
+                    background-color: #66aabb;
+                    border-radius: 50%;
+                    height: 22px;
+                    width: 22px;
+                    top: 9px;
+                    right: 0;
+                    transform: translateX(65%);
+                    opacity: 80%;
+                    color: rgb(255, 255, 255);
+                }
             }
         }
     }

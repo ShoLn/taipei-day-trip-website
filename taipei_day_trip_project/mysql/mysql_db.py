@@ -1,4 +1,8 @@
 from mysql.connector import pooling, Error
+from dotenv import load_dotenv
+import os
+
+load_dotenv()
 
 
 class Db():
@@ -9,7 +13,7 @@ class Db():
             pool_reset_session=True,
             host='localhost',
             user='root',
-            password='password',
+            password=os.getenv("mysql_password"),
             database='website',
             auth_plugin="mysql_native_password"
         )

@@ -1,6 +1,10 @@
 from flask import *
 from taipei_day_trip_project.mysql.mysql_db import db
 import requests as py_req
+from dotenv import load_dotenv
+import os
+
+load_dotenv()
 
 order_blueprint = Blueprint('order_blueprint', __name__)
 
@@ -47,11 +51,11 @@ def api_orders():
     url = "https://sandbox.tappaysdk.com/tpc/payment/pay-by-prime"
     header = {
         "Content-Type": "application/json",
-        "x-api-key": "partner_oM6ZkSqDG3fZ0u3aPyqOyoPEXwfK7j8jBX5YK3TfU0bcqHhd3YDkqUlm"
+        "x-api-key": os.getenv('tappay_partner_key')
     }
     data = {
         "prime": prime,
-        "partner_key": "partner_oM6ZkSqDG3fZ0u3aPyqOyoPEXwfK7j8jBX5YK3TfU0bcqHhd3YDkqUlm",
+        "partner_key": os.getenv('tappay_partner_key'),
         "merchant_id": "ShoLn_CTBC",
         "details": "TapPay Test",
         "amount": total_price,

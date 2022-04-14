@@ -19,6 +19,8 @@ let signup_password = pop_signup.querySelector("input[name='password']"); // 註
 let signup = pop_signup.querySelector("button"); // 註冊按鈕
 //預定行程按鈕
 let booking = document.querySelectorAll("div.nav5")[0];
+let click_booking = false;
+let book_num = document.querySelector("div.nav_book_num");
 
 // 按台北一日遊字樣導到首頁
 taipei.addEventListener("click", (e) => {
@@ -45,10 +47,13 @@ window.addEventListener("load", (e) => {
     res_login.then((res_json) => {
         //若沒登入
         if (res_json.null) {
-            // 預定行程按鈕
+            // 預定行程按鈕事件註冊
             booking.addEventListener("click", (e) => {
                 pop_login.style.display = "flex";
+                click_booking = true;
+                console.log(click_booking);
             });
+            // 若有登入
         } else {
             let login_signup = document.querySelectorAll("div.nav5")[1];
             login_signup.style.display = "none";
@@ -66,9 +71,22 @@ window.addEventListener("load", (e) => {
                     }
                 });
             });
+            // 預定行程按鈕點擊事件導到預定行程頁面
             booking.addEventListener("click", (e) => {
                 location.href = "/booking";
             });
+            //抓取預定行程數目 顯示預定行程數目 在預定行程按鈕旁
+            fetch("/api/booking")
+                .then((res) => {
+                    return res.json();
+                })
+                .then((res) => {
+                    let num = res.data.attrac.length;
+                    if (num != 0) {
+                        book_num.style.display = "flex";
+                        book_num.innerText = num;
+                    }
+                });
         }
     });
 });
@@ -148,11 +166,23 @@ signup.addEventListener("click", (e) => {
     let res = api_user("POST", data);
     res.then((res_json) => {
         if (res_json.ok) {
-            let success = document.createElement("div");
-            success.classList.add("success");
-            success.innerText = "註冊成功";
-            success.style.color = "green";
-            signup.after(success);
+            // PATCH api
+            let data = JSON.stringify({
+                email: signup_email.value,
+                password: signup_password.value,
+            });
+            let res = api_user("PATCH", data);
+            res.then((res_json) => {
+                if (res_json.ok) {
+                    location.href = window.location.href;
+                } else {
+                    let error_message = document.createElement("div");
+                    error_message.classList.add("error");
+                    error_message.innerText = res_json.message;
+                    error_message.style.color = "red";
+                    login.after(error_message);
+                }
+            });
         } else {
             let error_message = document.createElement("div");
             error_message.classList.add("error");
@@ -193,8 +223,12 @@ login.addEventListener("click", (e) => {
     let res = api_user("PATCH", data);
     res.then((res_json) => {
         if (res_json.ok) {
-            pop_login.style.display = "none";
-            location.href = window.location.href;
+            if (click_booking) {
+                click_booking = false;
+                location.href = "/booking";
+            } else {
+                location.href = window.location.href;
+            }
         } else {
             let error_message = document.createElement("div");
             error_message.classList.add("error");
