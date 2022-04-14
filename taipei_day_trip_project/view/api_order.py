@@ -11,6 +11,8 @@ order_blueprint = Blueprint('order_blueprint', __name__)
 #################################################################
 ########################### Api 訂單付款 #########################
 #################################################################
+
+
 @order_blueprint.route('/api/orders', methods=["POST"])
 def api_orders():
     # api orders POST
@@ -93,32 +95,32 @@ def api_orders():
                 val = (booking_id,)
                 sql_result = db.change(sql, val)
 
-                if sql_result.get("no_mysql_error"):
-                    sql = """
-                    SELECT `order_id` FROM `orders` WHERE
-                    `attrac_id` = %s AND
-                    `tour_date` = %s AND
-                    `tour_time` = %s AND
-                    `user_id` = %s;    
-                    """
-                    val = (attrac_id, tour_date, tour_time, user_id)
-                    sql_result = db.select(sql, val, one_row=True)
+            if sql_result.get("no_mysql_error"):
+                sql = """
+                SELECT `order_id` FROM `orders` WHERE
+                `attrac_id` = %s AND
+                `tour_date` = %s AND
+                `tour_time` = %s AND
+                `user_id` = %s;    
+                """
+                val = (attrac_id, tour_date, tour_time, user_id)
+                sql_result = db.select(sql, val, one_row=True)
 
-                    if sql_result.get("no_mysql_error"):
-                        order_id = sql_result.get("data")["order_id"]
-                        return jsonify({
-                            "data": {
-                                "number": order_id,
-                                "payment": {
-                                    "status": 0,
-                                    "message": "付款成功"
-                                }
+                if sql_result.get("no_mysql_error"):
+                    order_id = sql_result.get("data")["order_id"]
+                    return jsonify({
+                        "data": {
+                            "number": order_id,
+                            "payment": {
+                                "status": 0,
+                                "message": "付款成功"
                             }
-                        }), 200
-                    else:
-                        return jsonify({"error": True, "message": "伺服器錯誤"}), 500
+                        }
+                    }), 200
                 else:
                     return jsonify({"error": True, "message": "伺服器錯誤"}), 500
+            else:
+                return jsonify({"error": True, "message": "伺服器錯誤"}), 500
         else:
             return jsonify({"error": True, "message": "伺服器錯誤"}), 500
     # 若付款失敗

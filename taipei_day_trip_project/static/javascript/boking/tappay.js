@@ -182,7 +182,6 @@ form_tappay.addEventListener("submit", (e) => {
                     total_price: total_price,
                 },
             });
-            console.log(request_data);
             let res_orders = api_orders("POST", request_data);
             res_orders.then((res_orders_json) => {
                 if (!res_orders_json.error) {
