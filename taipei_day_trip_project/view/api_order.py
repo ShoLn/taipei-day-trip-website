@@ -29,6 +29,7 @@ def api_orders():
     tour_cost = []
 
     for booking_id in all_booking_id.split(','):
+        print(booking_id)
         sql = 'SELECT * FROM `booking` WHERE `id` = %s;'
         val = (booking_id,)
         sql_result = db.select(sql, val, one_row=True)
@@ -94,31 +95,30 @@ def api_orders():
                 sql = 'DELETE FROM `booking` WHERE `id` = %s;'
                 val = (booking_id,)
                 sql_result = db.change(sql, val)
-
-            if sql_result.get("no_mysql_error"):
-                sql = """
-                SELECT `order_id` FROM `orders` WHERE
-                `attrac_id` = %s AND
-                `tour_date` = %s AND
-                `tour_time` = %s AND
-                `user_id` = %s;    
-                """
-                val = (attrac_id, tour_date, tour_time, user_id)
-                sql_result = db.select(sql, val, one_row=True)
-
                 if sql_result.get("no_mysql_error"):
-                    order_id = sql_result.get("data")["order_id"]
-                    return jsonify({
-                        "data": {
-                            "number": order_id,
-                            "payment": {
-                                "status": 0,
-                                "message": "付款成功"
-                            }
-                        }
-                    }), 200
+                    print("delete success!")
                 else:
                     return jsonify({"error": True, "message": "伺服器錯誤"}), 500
+            sql = """
+            SELECT `order_id` FROM `orders` WHERE
+            `attrac_id` = %s AND
+            `tour_date` = %s AND
+            `tour_time` = %s AND
+            `user_id` = %s;    
+            """
+            val = (attrac_id, tour_date, tour_time, user_id)
+            sql_result = db.select(sql, val, one_row=True)
+            if sql_result.get("no_mysql_error"):
+                order_id = sql_result.get("data")["order_id"]
+                return jsonify({
+                    "data": {
+                        "number": order_id,
+                        "payment": {
+                            "status": 0,
+                            "message": "付款成功"
+                        }
+                    }
+                }), 200
             else:
                 return jsonify({"error": True, "message": "伺服器錯誤"}), 500
         else:
