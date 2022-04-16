@@ -3,8 +3,6 @@ let img_container = document.querySelector("div.c_img_container"); // 圖片容�
 let dot_container = document.querySelector("div.c_dot_container"); // 圓點容器
 let loading_gif = document.querySelector("div.loading"); // loading gif div
 
-load_attrac_id();
-
 window.addEventListener("load", (e) => {
     load_attrac_id();
     loading_gif.style.display = "none";
