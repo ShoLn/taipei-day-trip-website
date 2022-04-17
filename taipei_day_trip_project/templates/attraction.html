@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>attraction</title>
+        <link rel="stylesheet" href="/static/css/attraction/attraction.css" />
+    </head>
+    <body>
+        <!-- loading gif before api finished -->
+        <div class="loading"></div>
+        <!-- nav -->
+        <div class="nav1">
+            <div class="nav2">
+                <div class="nav3">台北一日遊</div>
+                <div class="nav4">
+                    <div class="nav5">預定行程
+                        <div class="nav_book_num"></div>
+                    </div>
+                    <div class="nav5">登入/註冊</div>
+                </div>
+            </div>
+        </div>
+        <!-- 圖片輪播及導覽行程容器 -->
+        <div class="c_outermost">
+            <div class="con_1200">
+                <!-- 圖片輪播 -->
+                <div class="c">
+                    <button class="c_button c_left_button">
+                        <img
+                            src="/static/image/icon/btn_leftArrow.png"
+                            alt=""
+                        />
+                    </button>
+                    <!-- 圖片容器 -->
+                    <div class="c_img_container"></div>
+                    <button class="c_button c_right_button">
+                        <img
+                            src="/static/image/icon/btn_rightArrow.png"
+                            alt=""
+                        />
+                    </button>
+                    <!-- 圓點容器 -->
+                    <div class="c_dot_container"></div>
+                </div>
+                <!-- 行程選擇 -->
+                <div class="t">
+                    <div class="name"></div>
+                    <div class="cate_mrt"></div>
+                    <div class="choose">
+                        <form action="">
+                            <div class="choose0">訂購導覽行程</div>
+                            <div class="choose1">
+                                以此景點為中心的一日行程，帶您探索城市角落故事
+                            </div>
+                            <div class="date">
+                                <label class="date" for="date"
+                                    >選擇日期：</label
+                                >
+                                <input
+                                    type="date"
+                                    name="date"
+                                    id="date"
+                                    class="date"
+                                    required
+                                />
+                            </div>
+                            <div class="time">
+                                <div class="time">選擇時間：</div>
+                                <input
+                                    type="radio"
+                                    name="time"
+                                    id="up"
+                                    value="up"
+                                    class="up"
+                                    checked
+                                />
+                                <label for="up">上半天</label>
+                                <input
+                                    type="radio"
+                                    name="time"
+                                    id="down"
+                                    value="down"
+                                    class="down"
+                                />
+                                <label for="down">下半天</label>
+                            </div>
+                            <div class="money">
+                                <div class="money0">導覽費用：</div>
+                                <div class="money1">新台幣 2000 元</div>
+                            </div>
+                            <button>開始預訂行程</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+            <hr />
+            <!-- 描述地址交通 -->
+            <div class="content">
+                <div class="description"></div>
+                <div class="address">
+                    <div class="address0">景點地址：</div>
+                    <div class="address1"></div>
+                </div>
+                <div class="trans">
+                    <div class="trans0">交通方式：</div>
+                    <div class="trans1"></div>
+                </div>
+            </div>
+        </div>
+        <!-- login -->
+        <div class="pop_outest">
+            <div class="pop_container_login">
+                <div class="top_color"></div>
+                <div class="pop0">
+                    登入會員帳號<img
+                        src="/static/image/icon/icon_close.png"
+                        alt=""
+                    />
+                </div>
+                <input
+                    type="email"
+                    name="email"
+                    placeholder="輸入電子信箱"
+                    required
+                />
+                <input
+                    type="password"
+                    name="password"
+                    placeholder="輸入密碼"
+                    required
+                />
+                <button>登入帳戶</button>
+                <div class="pop1">還沒有帳戶？點此註冊</div>
+            </div>
+        </div>
+        <!-- signup -->
+        <div class="pop_outest">
+            <div class="pop_container_signup">
+                <div class="top_color"></div>
+                <div class="pop0">
+                    註冊會員帳號<img
+                        src="/static/image/icon/icon_close.png"
+                        alt=""
+                    />
+                </div>
+                <input
+                    type="text"
+                    name="name"
+                    placeholder="輸入姓名"
+                    required
+                />
+                <input
+                    type="email"
+                    name="email"
+                    placeholder="輸入電子信箱"
+                    required
+                />
+                <input
+                    type="password"
+                    name="password"
+                    placeholder="輸入密碼"
+                    required
+                />
+                <button>註冊新帳戶</button>
+                <div class="pop1">已經有帳戶了？點此登入</div>
+            </div>
+        </div>
+        <!-- booking error -->
+        <div class="book_error0">
+            <div class="book_error1">
+                <img src="/static/image/icon/icon_close.png" />
+                <div class="book_error2"></div>
+                <div class="book_error3"></div>
+            </div>
+        </div>
+        <!-- last -->
+        <div class="l1">
+            <div class="l2">COPYRIGHT © 2021 台北一日遊</div>
+        </div>
+    </body>
+    <script src="/static/javascript/index/index_login_signup.js"></script>
+    <script
+        type="text/javascript"
+        src="/static/javascript/attraction/attraction.js"
+    ></script>
+</html>

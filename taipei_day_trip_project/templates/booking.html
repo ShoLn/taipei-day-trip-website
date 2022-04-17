@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>booking</title>
+        <link rel="stylesheet" href="/static/css/booking/booking.css" />
+    </head>
+    <body>
+        <!-- loading gif before api finished -->
+        <div class="loading"></div>
+        <!-- nav -->
+        <div class="nav1">
+            <div class="nav2">
+                <div class="nav3">台北一日遊</div>
+                <div class="nav4">
+                    <div class="nav5">
+                        預定行程
+                        <div class="nav_book_num"></div>
+                    </div>
+                    <div class="nav5">登入/註冊</div>
+                </div>
+            </div>
+        </div>
+        <!-- schedule -->
+        <form>
+            <div class="s0"></div>
+            <!-- <div class="s1">
+                <img
+                    class="attrac_img"
+                    src="https://www.travel.taipei/d_upload_ttn/sceneadmin/image/A0/B0/C0/D14/E810/F21/48d66fbd-1ba3-4efd-837a-3767db5f52e0.jpg"
+                />
+                <div class="s2">
+                    <div class="s3">台北一日遊：平安鐘</div>
+                    <div class="s4">
+                        <div class="s5">日期：</div>
+                        <div class="s6">2021-04-23</div>
+                    </div>
+                    <div class="s4">
+                        <div class="s5">時間：</div>
+                        <div class="s6">早上九點到下午四點</div>
+                    </div>
+                    <div class="s4">
+                        <div class="s5">費用：</div>
+                        <div class="s6">新台幣 2000 元</div>
+                    </div>
+                    <div class="s4">
+                        <div class="s5">地點：</div>
+                        <div class="s6">台北市 大安區忠孝東路四段</div>
+                    </div>
+                </div>
+                <img
+                    class="icon_delete"
+                    src="/static/image/icon/icon_delete.png"
+                />
+            </div>
+            <hr /> -->
+            <div class="u0">
+                <div class="u1">您的聯絡資訊</div>
+                <div class="u2">
+                    <label for="name">聯絡姓名：</label>
+                    <input type="text" id="name" required />
+                </div>
+                <div class="u2">
+                    <label for="email">聯絡信箱：</label>
+                    <input type="email" id="email" required />
+                </div>
+                <div class="u2">
+                    <label for="phone">手機號碼：</label>
+                    <input
+                        type="text"
+                        id="phone"
+                        pattern="[0-9]+"
+                        minlength="10"
+                        maxlength="10"
+                        required
+                    />
+                </div>
+                <div class="u3">
+                    請保持手機暢通，準時到達，導覽人員將用手機與您聯繫，務必留下正確的聯絡方式。
+                </div>
+            </div>
+            <hr />
+            <div class="c0">
+                <div class="c1">信用卡付款資訊</div>
+                <div class="form-group card-number-group">
+                    <label for="card-number" class="control-label"
+                        >卡片號碼：</label
+                    >
+                    <div class="tpfield" id="card-number"></div>
+                    <span class="cardtype number"></span>
+                </div>
+                <div class="form-group expiration-date-group">
+                    <label for="expiration-date" class="control-label"
+                        >過期時間：</label
+                    >
+                    <div class="tpfield" id="card-expiration-date"></div>
+                    <span class="cardtype expiry"></span>
+                </div>
+                <div class="form-group ccv-group">
+                    <label for="ccv" class="control-label">驗證號碼：</label>
+                    <div class="tpfield" id="card-ccv"></div>
+                    <span class="cardtype ccv"></span>
+                </div>
+            </div>
+            <hr />
+            <div class="confirm0">
+                <div class="confirm1">總價：新台幣 2000 元</div>
+                <button button type="submit" class="tapfield btn btn-default">
+                    確認訂購並付款
+                </button>
+            </div>
+        </form>
+        <!-- no schedule but login -->
+        <div class="no_schedule">
+            <div class="n0"></div>
+            <div class="n1">目前沒有任何預定的行程</div>
+        </div>
+        <!-- login function -->
+        <div class="pop_outest">
+            <div class="pop_container_login">
+                <div class="top_color"></div>
+                <div class="pop0">
+                    登入會員帳號<img
+                        src="/static/image/icon/icon_close.png"
+                        alt=""
+                    />
+                </div>
+                <input
+                    type="email"
+                    name="email"
+                    placeholder="輸入電子信箱"
+                    required
+                />
+                <input
+                    type="password"
+                    name="password"
+                    placeholder="輸入密碼"
+                    required
+                />
+                <button>登入帳戶</button>
+                <div class="pop1">還沒有帳戶？點此註冊</div>
+            </div>
+        </div>
+        <!-- signup function -->
+        <div class="pop_outest">
+            <div class="pop_container_signup">
+                <div class="top_color"></div>
+                <div class="pop0">
+                    註冊會員帳號<img
+                        src="/static/image/icon/icon_close.png"
+                        alt=""
+                    />
+                </div>
+                <input
+                    type="text"
+                    name="name"
+                    placeholder="輸入姓名"
+                    required
+                />
+                <input
+                    type="email"
+                    name="email"
+                    placeholder="輸入電子信箱"
+                    required
+                />
+                <input
+                    type="password"
+                    name="password"
+                    placeholder="輸入密碼"
+                    required
+                />
+                <button>註冊新帳戶</button>
+                <div class="pop1">已經有帳戶了？點此登入</div>
+            </div>
+        </div>
+        <!-- last -->
+        <div class="l1">
+            <div class="l2">COPYRIGHT © 2021 台北一日遊</div>
+        </div>
+    </body>
+    <script src="/static/javascript/boking/booking.js"></script>
+    <script src="/static/javascript/index/index_login_signup.js"></script>
+    <script src="https://js.tappaysdk.com/tpdirect/v5.9.0"></script>
+    <script src="/static/javascript/boking/tappay.js"></script>
+</html>
